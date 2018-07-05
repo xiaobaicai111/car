@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {BrowserRouter as Router,Route,Link,Redirect} from "react-router-dom";
 import Home from "./components/home";
+// import Appxiazai from "./components/appxiazai";
 import "./css/App.css";
 import logo from "./image/logo.png";
 import "./css/lincss.css";
