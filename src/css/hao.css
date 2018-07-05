@@ -160,14 +160,13 @@
 }
 .h-roundlist{
     width: 1200px;
-    height: auto;
-    position: relative;
+    height: 1250px;
+    position: absolute;
 }
 .h-roundlist li{
     width: 280px;
     height: auto;
     padding: 10px;
-    float: left;
     border-bottom: 1px solid #f1f1f1;
     transition-property: box-shadow;
     transition-duration: .5s;
