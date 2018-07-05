@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import Ylbt from './Ylbt';
 class Home extends Component {
     constructor(props){
         super(props)
@@ -8,7 +8,7 @@ class Home extends Component {
     render() {
         return (
             <div>
-                <h1>111</h1>
+                <Ylbt/>
             </div>
         );
     }
