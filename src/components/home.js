@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+
 import Footer from "./footer"
 
+import Hmid from "./hmid";
 
 
 class Home extends Component {
@@ -11,8 +13,10 @@ class Home extends Component {
     render() {
         return (
             <div>
-                <h1>111</h1>
+
+                <Hmid/>
                 <Footer></Footer>
+
             </div>
         );
     }
