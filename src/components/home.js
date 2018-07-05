@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Hmid from "./hmid";
+
 
 class Home extends Component {
     constructor(props){
@@ -8,7 +10,8 @@ class Home extends Component {
     render() {
         return (
             <div>
-                <h1>111</h1>
+                <Hmid/>
+                
             </div>
         );
     }
