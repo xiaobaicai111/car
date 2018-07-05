@@ -45,7 +45,7 @@ class Footer extends Component {
                     <a href="#">中国香港旅游</a>
                     <a href="#">中国澳门旅游</a>
                 </p>
-                <p className="l_yq">
+                <div className="l_yq">
                     <b>友情链接：</b>
                     <div>
                         <a href="#">劲旅网</a>
@@ -95,7 +95,7 @@ class Footer extends Component {
                         <a href="#">517旅行</a>
 
                     </div>
-                </p>
+                </div>
                 <p style={{textAlign:'center'}}>Copyright&copy;2013-2017出国去chuguo.com All rights reserver 厦门博旅旅游股份有限公司 闽ICP备12023338号-1增值电信业务经营许可证 闽B2-20160082</p>
             </footer>
         );
