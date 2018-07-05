@@ -1,11 +1,6 @@
 import React, { Component } from 'react';
 
-import Footer from "./footer"
-
-import Hmid from "./hmid";
-
-
-class Home extends Component {
+class Applation extends Component {
     constructor(props){
         super(props)
     }
@@ -13,13 +8,10 @@ class Home extends Component {
     render() {
         return (
             <div>
-
-                <Hmid/>
-                <Footer></Footer>
-
+                <h1>应用</h1>
             </div>
         );
     }
 }
 
-export default Home;
+export default Applation;
