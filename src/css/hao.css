@@ -1,4 +1,5 @@
 
+/* 首页中间部分 */
 #h-explore{
     width: 100%;
     height: 1027px;
@@ -198,5 +199,400 @@
     font-size: 14px;
     color: #666666;
 }
+/* 购物车页面 */
+#h-shop{
+    width: 100%;
+    height: auto;
+    border-top: 4px solid #dc284b;
+}
+#h-shop .h-selectshop{
+    width: 1180px;
+    height: auto;
+    margin: 0 auto;
+}
+.h-selectshop .h-cartbar{
+    width: 1180px;
+    height: 66px;
+    margin-bottom: 40px;
+    padding-top: 25px;
+}
+.h-steplist{
+    width: 1180px;
+    height: 66px;
+}
+.h-steplist .h-stepitem{
+    float: left;
+    width: 250px;
+    height: 66px;
+}
+.h-steplist .h-stepitem div{
+    width: 250px;
+    height: 40px;
+    line-height: 40px;
+    font-weight: 900;
+    text-align: center;
+    color: #999999;
+    font-size: 18px;
+    background: url("../image/stepBar.png") -99px -41px no-repeat;
+}
+.h-steplist .h-stepitem p{
+    text-align: center;
+    color: #999999;
+    font-size: 14px;
+    padding-top: 5px;
+}
+.h-steplist .h-stepfirst{
+    width: 352px;
+    height: 66px;
+}
+.h-steplist .h-stepfirst div{
+    padding-left: 220px;
+    background-position: 1px 0;
+    color: #fff;
+    text-align: left;
+}
+.h-steplist .h-stepfirst p{
+    padding-left: 96px;
+    color: #666;
+}
+.h-steplist .h-steplast{
+    width: 328px;
+    height: 66px;
+}
+.h-steplist .h-steplast div{
+    padding-left: 120px;
+    background-position: -99px -122px;
+    text-align: left;
+}
+.h-steplist .h-steplast p{
+    padding-left: 98px;
+    text-align: left;
+}
+.h-tipslogin{
+    height: 22px;
+    padding-bottom: 5px;
+    line-height: 22px;
+    color: #999;
+    font-size: 12px;
+}
+.h-tipslogin span{
+    color: #dc244b;
+    text-decoration: underline;
+}
+.h-cartth{
+    margin-bottom: 20px;
+    height: 45px;
+    line-height: 45px;
+    border: 1px solid #ccc;
+    background-color: #f2f2f2;
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+}
+.h-cartth .h-th{
+    float: left;
+    height: 45px;
+}
+.h-cartth-check{
+    width: 60px;
+    overflow: hidden;
+    position: relative;
+}
 
-
+#h-thSelectAll{
+    float: left;
+    position: absolute;
+    top: -15px;
+    left: -20px;
+    z-index: -1;
+}
+.h-cartth-check label{
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    position: absolute;
+    left: 0;
+    top:0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    background: url(../image/prebookIcon2.png) 0 0 no-repeat;
+}
+.h-cartth-check .h-selected{
+    background-position: -25px 0;
+}
+.h-th-item{
+    width: 350px;
+}
+.h-th-info{
+    width: 200px;
+    margin-right: 42px;
+}
+.h-th-price{
+    width: 194px;
+}
+.h-th-num{
+    width: 140px;
+}
+.h-th-sum{
+    width: 122px;
+}
+.h-th-setting{
+    width: 70px;
+}
+.h-carttable{
+    width: 1178px;
+    height: 158px;
+    margin-bottom: 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+}
+.h-cartproduct{
+    margin-bottom: -1px;
+}
+.h-cartproduct .h-productlist{
+    width: 1178px;
+    height: 158px;
+}
+.h-productlist .h-td{
+    float: left;
+    height: 158px;
+}
+.h-td-check{
+    width: 60px;
+    position: relative;
+}
+.h-td-check input{
+    position: absolute;
+    top: -15px;
+    left: -20px;
+    z-index: -1;
+}
+.h-td-check label{
+    float: left;
+    width: 18px;
+    height: 18px;
+    position: absolute;
+    left: 0;
+    top:0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    cursor: pointer;
+    background: url(../image/prebookIcon2.png) 0 0 no-repeat;
+}
+.h-td-check .h-tdselected{
+    background-position: -75px 0;   
+}
+.h-td-item{
+    width: 350px;
+}
+.h-td-item .h-td-inner{
+    padding-top: 39px;
+}
+.h-td-inner .h-td-pic{
+    float: left;
+    width: 80px;
+    height: 80px;
+    margin-right: 20px;
+    border: 1px solid #c8c8c8;
+}
+.h-td-pic span{
+    display: block;
+    width: 82px;
+    height: 82px;
+    background: #dc244b;
+}
+.h-td-inner .h-td-proname{
+    float: left;
+    width: 218px;
+    padding-right: 30px;
+    margin-top: -3px;
+}
+.h-td-proname a{
+    display: block;
+    height: 50px;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+.h-td-proname span{
+    display: block;
+    width: 60px;
+    height: 26px;
+    font-size: 12px;
+    text-align: center;
+    float: left;
+    margin: 0 5px 5px 0;
+    padding: 0 16px 0 30px;
+    line-height: 26px;
+    color: #fefefe;
+    background: #dc244b url(../image/prebookIcon2.png) 10px -400px no-repeat;
+}
+.h-td-info{
+    width: 200px;
+    margin-right: 42px;
+}
+.h-td-info .h-td-mod{
+    font-size: 12px;
+    color: #999999;
+    height: 117px;
+    border: 1px dashed transparent;
+    padding-top: 39px;
+}
+.h-td-mod p{
+    line-height: 22px;
+}
+.h-td-price{
+    font-size: 14px;
+    color: #666;
+    width: 194px;
+    text-align: center;
+}
+.h-td-price .h-price-single{
+    height: 158px;
+    line-height: 158px;
+    text-align: center;
+}
+.h-td-price .h-price-single b{
+    color: #dc244b;
+}
+.h-td-amount{
+    width: 140px;
+}
+.h-td-amount .h-td-amount-single{
+    position: relative;
+    padding-top: 68px;
+    text-align: center;
+}
+.h-amount-wrap{
+    width: 58px;
+    height: 18px;
+    margin: 0 auto;
+    border: 1px solid #bebebe;
+    border-radius: 2px;
+}
+.h-amount-wrap .h-mpbtn{
+    display: block;
+    width: 14px;
+    height: 18px;
+    line-height: 18px;
+    border-right: 1px solid #bebebe;
+    background-color: #fff;
+    text-align: center;
+    color: #666;
+    float: left;
+}
+.h-amount-wrap input{
+    width: 28px;
+    height: 16px;
+    border: 0;
+    outline: 0;
+    text-align: center;
+    float: left;
+}
+.h-amount-wrap .h-plus{
+    border: 0;
+    border-left: 1px solid #bebebe;
+}
+.h-td-sum{
+    font-size: 16px;
+    line-height: 158px;
+    text-align: center;
+    width: 122px;
+    color: #dc244b;
+}
+.h-td-operate{
+    line-height: 158px;
+    text-align: center;
+    width: 70px;
+    color: #666666;
+    font-size: 14px;
+}
+.h-border{
+    width: 1180px;
+    height: 0;
+    padding-top: 20px;
+    border-top: 1px solid #dc244b;
+}
+.h-jiesuan{
+    width: 1180px;
+    height: 70px;
+    margin-bottom: 40px;
+    position: relative;
+    background-color: #e5e5e5;
+    font-size: 14px;
+    color: #333;
+    overflow: hidden;
+}
+.h-float{
+    float: left;
+    height: 70px;
+    line-height: 70px;
+}
+.h-select-box{
+    width: 55px;
+    padding-left: 45px;
+    position: relative;
+}
+#h-floatselectall{
+    position: absolute;
+    left: -20px;
+    top: -20px;
+}
+.h-select-box label{
+    float: left;
+    width: 18px;
+    height: 18px;
+    position: absolute;
+    left: 20px;
+    top:28px;
+    background: url(../image/prebookIcon2.png) 0 0 no-repeat;
+}
+.h-select-box .h-fl-selected{
+    background-position: -25px 0;
+}
+.h-del-select span{
+    font-size: 14px;
+    color: #333;
+}
+.h-jsbtn{
+    float: right;
+    min-width: 484px;
+}
+.h-shopnum{
+    width: 95px;
+    height: 70px;
+    float: left;
+    margin: 0 20px 0 0;
+}
+#h-allCount{
+    font-size: 24px;
+    color: #dc244b;
+}
+.h-allprice{
+    width: 135px;
+    height: 70px;
+    float: left;
+    font-size: 18px;
+    font-weight: bold;
+    color: #dc244b;
+}
+#h-allPrices{
+    font-size: 24px;
+}
+.jiesuanbtn{
+    width: 170px;
+    height: 70px;
+    float: right;
+}
+#gojiesuan{
+    width: 170px;
+    height: 70px;
+    border: 0;
+    background: #dc244b;
+    color: white;
+    font-size: 20px;
+    
+}
