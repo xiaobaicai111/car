@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
-import Ylbt from './Ylbt';
 import Head from "./head";
-import Footer from "./footer"
 
-import Hmid from "./hmid";
-
-class Home extends Component {
+class Place extends Component {
     constructor(props){
         super(props)
     }
@@ -14,12 +10,10 @@ class Home extends Component {
         return (
             <div>
                 <Head/>
-                <Ylbt/>
-                <Hmid/>
-                <Footer></Footer>
+                <h1>目的地</h1>
             </div>
         );
     }
 }
 
-export default Home;
+export default Place;
