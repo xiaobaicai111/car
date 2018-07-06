@@ -4,7 +4,6 @@ import Head from "./head";
 import Footer from "./footer"
 
 import Hmid from "./hmid";
-
 class Home extends Component {
     constructor(props){
         super(props)
