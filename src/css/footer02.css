@@ -1,4 +1,4 @@
-.l_foot{
+.l_foot2{
     padding: 50px 0;
     width: 1180px;
     height: 150px;
@@ -6,48 +6,48 @@
     border-top: 2px solid #ff0f39;
     margin: 0 auto;
 }
-.l_foot h2{
+.l_foot2 h2{
     font-size: 30px;
     text-align: center;
     height: 50px;
     padding-bottom: 5px;
 }
-.l_foot h2 b{
+.l_foot2 h2 b{
     margin:0 10px;
 
 }
-.l_foot h2 span{
+.l_foot2 h2 span{
     display: inline-block;
     width: 50px;
     height: 50px;
     background: url("../image/icon-common.png");
 
 }
-.l_foot p{
+.l_foot2 p{
     font-size: 12px;
 }
 
-.l_gy{
+.l_gy2{
     margin:20px 0;
 }
-.l_gy a{
+.l_gy2 a{
     display: inline-block;
     height: 14px;
     padding: 0 10px;
     border-right: 1px solid #c6c6c6
 }
-.l_gy a:nth-of-type(1){
+.l_gy2 a:nth-of-type(1){
 padding-left: 0;
 }
-.l_gy a:nth-of-type(10){
+.l_gy2 a:nth-of-type(10){
 
     border: 0;
     color: red;
 }
-.l_footleft p{
+.l_footleft2 p{
    width: 800px;
 }
-.l_footleft p{
+.l_footleft2 p{
     margin-top: 20px;
 
 }

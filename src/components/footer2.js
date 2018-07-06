@@ -3,10 +3,10 @@ import "../css/footer02.css";
 class Footer02 extends Component {
     render() {
         return (
-            <footer className="l_foot">
+            <footer className="l_foot2">
             
-            <div className="l_footleft">
-                <p className="l_gy">
+            <div className="l_footleft2">
+                <p className="l_gy2">
                     <a href="#">关于出国去</a>
                     <a href="#">加入我们</a>
                     <a href="#">联系我们</a>
@@ -22,7 +22,7 @@ class Footer02 extends Component {
                
                 <p>Copyright&copy;2013-2017出国去chuguo.com All rights reserver 厦门博旅旅游股份有限公司 闽ICP备12023338号-1增值电信业务经营许可证 闽B2-20160082</p>
             </div>
-            <div className="l_footright">
+            <div className="l_footright2">
                 <h2>
                     <span></span>
                     <b>400-825-3686</b>

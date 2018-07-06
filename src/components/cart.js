@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Head from "./head";
+import Footer02 from "./footer2";
 
 class Cart extends Component {
     constructor(props){
@@ -117,7 +118,7 @@ class Cart extends Component {
                         </div>
                     </div>
                 </div>
-
+                <Footer02/>
             </div>
         );
     }

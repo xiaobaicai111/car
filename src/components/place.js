@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Head from "./head";
 import "../css/mdd.css";
-import Footer from "../components/footer";
+import Footer02 from "./footer2";
 import $ from "jquery";
 class Place extends Component {
     constructor(props) {
@@ -299,7 +299,7 @@ class Place extends Component {
                         </div>
                     </div>
                 </div>
-                <Footer />
+                <Footer02 />
             </div>
         );
     }
