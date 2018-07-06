@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import Head from "./head";
 import "../css/register.css";
-import Footer02 from "./footer2"
+import Footer02 from "./footer2";
+
 class Register extends Component {
     constructor(props){
         super(props)

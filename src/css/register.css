@@ -1,0 +1,102 @@
+.l_line{
+    width: 100vw;
+    height: 1px;
+    border-top: 3px solid #ee0000;
+   
+}
+.l_regm{
+    width: 1180px;
+    margin: 30px auto;
+    color: #959595
+}
+.l_regbo{
+    display: flex;
+    border: 1px solid #c7c7c7;
+    margin-top: 30px;
+    padding: 25px 50px;
+}
+.l_regm h2{
+    font-size:28px; 
+    text-indent: 50px;
+    color: #959595
+}
+.l_regm_left{
+    border-right: 1px solid #bdbdbd;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+}
+.l_regm_left>label{
+    position: relative;
+    margin-top: 15px;
+    width: 280px;
+}
+.l_regm_left>label>input{
+    width: 280px;
+    height: 16px;
+    padding: 13px 10px;
+    display: block
+}
+.l_regm_left>label>span{
+    position: absolute;
+    height: 20px;
+    line-height: 20px;
+    padding: 5px 15px;
+    border: 1px solid red;
+    right: -100px;
+    top:-10px;
+    color: black;
+    font-size: 12px;
+    display: none;
+}
+#l_yzm{
+    display: inline-block;
+    width: 100px;
+    margin-right: 10px;
+}
+em,i{
+    font-style: normal;
+
+}
+.l_regbtn{
+    width: 150px;
+    height: 60px;
+    background:url(../image/login.png);
+    color: whitesmoke;
+}
+.l_xy{
+    font-size: 12pxx;
+}
+.l_xy a{
+    color: blue;
+    font-size: 12px;
+}
+.l_reggroup{
+    margin-top: 10px;
+    font-size: 12px
+}
+.l_rgmright{
+    padding-left: 50px;
+
+}
+.l_rgmright p{
+    color:#717171;
+    font-size: 20px;
+    text-align: left;
+    margin-top: 40px
+}
+.l_qq{
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    background: url("../image/login.png");
+    background-position: 0 280px;
+    margin: 0 40px
+}
+.l_sina{
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    background: url("../image/login.png");
+    background-position: -80px 280px;
+}
