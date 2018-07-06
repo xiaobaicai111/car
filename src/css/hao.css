@@ -1,0 +1,202 @@
+
+#h-explore{
+    width: 100%;
+    height: 1027px;
+}
+.h-world{
+    width: 1180px;
+    height: 1027px;
+    margin: 0 auto;
+}
+.h-world .h-exploretit{
+    width: 100%;
+    height: auto;
+}
+.h-world .h-exploretit h2{
+    font-size: 34px;
+    color: #dc284b;
+    text-align: center;
+    line-height: 56px;
+}
+.h-world .h-exploretit p{
+    font-size: 14px;
+    color: #8c8c8c;
+    text-align: center;
+    line-height: 20px;
+    margin-bottom: 50px;
+}
+.h-world .h-countrytj{
+    width: 1200px;
+    height: 880px;
+}
+.h-world .h-countrytj li{
+    float: left;
+    padding: 10px;
+    color: white;
+    transition-property: box-shadow;
+    transition-duration: .5s;
+    -moz-transition-property: box-shadow; /* Firefox 4 */
+    -moz-transition-duration: .5s; /* Firefox 4 */
+    -webkit-transition-property: box-shadow; /* Safari and Chrome */
+    -webkit-transition-duration: .5s; /* Safari and Chrome */
+    -o-transition-property: box-shadow; /* Opera */
+    -o-transition-duration: .5s; /* Opera */
+    position: relative;
+}
+.h-world .h-countrytj li:hover{
+    box-shadow:0px 0px 1px #999999;
+    cursor: pointer;
+}
+.h-world .h-countrytj li h2{
+    width: 280px;
+    text-align: center;
+    font-size: 34px;
+    font-weight: 900;
+    position: absolute;
+    top: 90px;
+    text-shadow: 1px 1px 0px #8c8c8c;
+}
+.h-world .h-countrytj li p{
+    width: 280px;
+    text-align: center;
+    font-size: 28px;
+    position: absolute;
+    top: 150px;
+    text-shadow: 1px 1px 0px #000000;
+}
+#h-flowerworld{
+    width: 100%;
+    height: 527px;
+    margin-top: 90px;
+    padding: 80px 0 160px;
+    background: url("../image/flower-bg.jpg") repeat;
+}
+#h-flowerworld .h-flower{
+    width: 1180px;
+    height: 527px;
+    margin: 0 auto;
+}
+.h-flowerpic{
+    width: 100%;
+}
+.h-flower .h-flowertit{
+    width: 1180px;
+    height: 80px;
+    margin-bottom: 40px;
+}
+
+.h-flowertit h2{
+    height: 50px;
+    text-align: center;
+    font-size: 34px;
+    color: white;
+}
+.h-flowertit p{
+    text-align: center;
+    font-size: 14px;
+    color: white;
+    line-height: 25px;
+}
+.h-flower .h-flowerlist{
+    display:block;
+    width: 1200px;
+    height: 400px;
+    margin: 0 auto;
+}
+.h-flowerlist li{
+    padding: 10px;
+    width: 280px;
+    height: 380px;
+    float: left;
+    transition-property: background;
+    transition-duration: 1s;
+    -moz-transition-property: background; /* Firefox 4 */
+    -moz-transition-duration: 1s; /* Firefox 4 */
+    -webkit-transition-property:background; /* Safari and Chrome */
+    -webkit-transition-duration: 1s; /* Safari and Chrome */
+    -o-transition-property: background; /* Opera */
+    -o-transition-duration: 1s; /* Opera */
+    position: relative;
+}
+.h-flowerlist li:hover{
+    background: white;
+}
+.h-flowerlist li p{
+    width: 280px;
+    height: 70px;
+    background: url("../image/fw-bg.png") repeat-x;
+    text-align: center;
+    color: white;
+    font-size: 26px;
+    position: absolute;
+    bottom: 10px;
+}
+#h-roundtheworld{
+    width: 100%;
+    height: 1303px;
+    padding: 70px 0;
+}
+#h-roundtheworld .h-round{
+    width: 1200px;
+    height: 1303px;
+    margin: 0 auto;
+}
+.h-roundtit{
+    width: 1200px;
+    height: 80px;
+    margin-bottom: 50px;
+}
+.h-roundtit h2{
+    color: #dc284b;
+    font-size: 34px;
+    line-height: 50px;
+    text-align: center;
+}
+.h-roundtit p{
+    color: #8c8c8c;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+}
+.h-roundlist{
+    width: 1200px;
+    height: 1400px;
+    position: absolute;
+}
+.h-roundlist li{
+    width: 280px;
+    height: auto;
+    padding: 10px;
+    border-bottom: 1px solid #f1f1f1;
+    transition-property: box-shadow;
+    transition-duration: .5s;
+    -moz-transition-property: box-shadow; /* Firefox 4 */
+    -moz-transition-duration: .5s; /* Firefox 4 */
+    -webkit-transition-property:box-shadow; /* Safari and Chrome */
+    -webkit-transition-duration: .5s; /* Safari and Chrome */
+    -o-transition-property: box-shadow; /* Opera */
+    -o-transition-duration: .5s; /* Opera */
+    position: absolute;
+}
+.h-roundlist li:hover{
+    box-shadow:0px 0px 2px #999999;
+}
+.h-roundlist li .h-roundtext{
+    width: 260px;
+    height: auto;
+    padding: 10px;
+}
+.h-roundlist li .h-roundtext b{
+    display: block;
+    font-size: 16px;
+    margin-bottom: 10px
+}
+.h-roundlist li .h-roundtext b:hover{
+    text-decoration: underline;
+}
+.h-roundlist li .h-roundtext p{
+    font-size: 14px;
+    color: #666666;
+}
+
+
