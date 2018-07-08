@@ -10,14 +10,8 @@ import Cart from './components/cart';
 import Register from './components/register';
 import Hotel from './components/hotel';
 import Place from './components/place';
-
-class App extends Component {
-  constructor(props){
-    super(props);
-
-  }
-
-import Store from './redux/Store'
+import Xiangqing from './components/xiangqing';
+import Store from './redux/Store';
 class App extends Component {
   constructor(props){
     super(props);
@@ -44,6 +38,7 @@ class App extends Component {
               <Route path="/applation" component={Appxiazai}></Route>
               <Route path="/login" component={Login}></Route>
               <Route path="/register" component={Register}></Route>
+              <Route path="/xiangqing" component={Xiangqing}></Route>
               <Redirect to="/home"/>
             </Switch>
           </div>

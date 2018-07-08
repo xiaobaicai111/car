@@ -4,6 +4,7 @@ import "../css/mdd.css";
 import Footer02 from "./footer2";
 import "../mock/mock";
 import $ from "jquery";
+import {Link} from "react-router-dom";
 class Place extends Component {
     constructor(props) {
         super(props);
@@ -105,15 +106,16 @@ class Place extends Component {
                             this.state.arr.map(function(item,i){
                                 return(
                                     <li key={i}>
+                                   
                                         <div>
-                                            <a href="#">
+                                        <Link to={{pathname:"/xiangqing",query:{name:item.id}}}>
                                                 <img src={item.img} />
-                                            </a>
+                                        </Link>
                                         </div>
                                         <div className="ycpbbb">
-                                            <a href="#">
+                                        <Link to={{pathname:"/xiangqing",query:{name:item.id}}}>
                                                 {item.title}
-                                            </a>
+                                                </Link>
                                             <p className="yqbl yleft">
                                                 <b>￥{item.price}</b>
                                             </p>
