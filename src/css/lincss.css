@@ -29,7 +29,7 @@
 }
 .l_nav ul{
     margin-top: 20px;
-    height: 30px;
+    height: 32px;
     width: auto;
     border: 1px solid #c8c8c8;
     line-height: 30px;
@@ -45,8 +45,7 @@
     border-radius:15px;
 }
 .l_links:hover{
-
-    background: #ff2020;
+    background: #dc284b;
     color: white
 }
 .l_span{
@@ -68,6 +67,7 @@
 .l_search{
     height: 30px;
     border-radius:15px;
+    padding-left:10px;
     border: 1px solid #bebebe;
     margin: 0 40px;
 }

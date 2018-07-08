@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {BrowserRouter as Router,Route,Link,Redirect,Switch} from "react-router-dom";
+import {BrowserRouter as Router,Route,Redirect,Switch} from "react-router-dom";
 import Home from "./components/home";
 import Appxiazai from "./components/appxiazai";
 import "./css/App.css";
@@ -10,16 +10,12 @@ import Cart from './components/cart';
 import Register from './components/register';
 import Hotel from './components/hotel';
 import Place from './components/place';
+
 class App extends Component {
   constructor(props){
     super(props);
-    this.changeactive.bind(this);
 
   }
-  changeactive(){
-    console.log($(this))
-  }
-
 
 
   render() {

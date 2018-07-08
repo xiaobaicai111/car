@@ -28,12 +28,14 @@
 }
 .h-world .h-countrytj{
     width: 1200px;
-    height: 880px;
+    height: 910px;
+    overflow: inherit;
 }
 .h-world .h-countrytj li{
     float: left;
     padding: 10px;
     color: white;
+    box-sizing:border-box;
     transition-property: box-shadow;
     transition-duration: .5s;
     -moz-transition-property: box-shadow; /* Firefox 4 */
@@ -47,6 +49,9 @@
 .h-world .h-countrytj li:hover{
     box-shadow:0px 0px 1px #999999;
     cursor: pointer;
+}
+.h-world .h-countrytj li a{
+    color:white;
 }
 .h-world .h-countrytj li h2{
     width: 280px;
@@ -162,6 +167,7 @@
 .h-roundlist{
     width: 1200px;
     height: 1400px;
+    overflow: inherit;
     position: absolute;
 }
 .h-roundlist li{
@@ -355,6 +361,7 @@
 .h-cartproduct .h-productlist{
     width: 1178px;
     height: 158px;
+    margin-bottom:20px;
 }
 .h-productlist .h-td{
     float: left;
@@ -482,6 +489,7 @@
     background-color: #fff;
     text-align: center;
     color: #666;
+    cursor:pointer;
     float: left;
 }
 .h-amount-wrap input{
@@ -509,6 +517,9 @@
     width: 70px;
     color: #666666;
     font-size: 14px;
+}
+.h-td-del{
+    cursor:pointer;
 }
 .h-border{
     width: 1180px;

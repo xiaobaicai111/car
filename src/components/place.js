@@ -2,16 +2,38 @@ import React, { Component } from "react";
 import Head from "./head";
 import "../css/mdd.css";
 import Footer02 from "./footer2";
+import "../mock/mock";
 import $ from "jquery";
 class Place extends Component {
     constructor(props) {
         super(props);
+        this.state={
+            arr:[],
+            haoquchu:[],   
+        }
     }
-    componentDidMount() {}
+    componentDidMount() {
+        var _this = this;
+        $.ajax({
+            type: "get",
+            url: "http://www.baidu.com/api",
+            dataType: "json",
+            success: function (data) {
+                 _this.setState({arr:data.lvyou});
+                 _this.setState({haoquchu:data.haoquchu});
+            }
+        });
+        // 总页数
+        _this.setState({totalpage:Math.ceil(_this.state.arr.length/this.state.pagesize)})
+
+    }
+
+
     top() {
         $("body,html").animate({ scrollTop: 0 }, 1000);
     }
     render() {
+        // console.log(this.state.arr,this.state.haoquchu)
         return (
             <div id="yb">
                 <Head />
@@ -19,7 +41,7 @@ class Place extends Component {
                     <div className="yfj" />
                     <ul className="ymdd">
                         <li>
-                            目的地　<span>&gt;</span>
+                            目的地&nbsp;<span>&gt;&nbsp;</span>
                         </li>
                         <li>泰国</li>
                     </ul>
@@ -78,108 +100,30 @@ class Place extends Component {
                     </div>
                     <div className="ycpli">
                         <ul>
-                            <li>
-                                <div>
-                                    <a href="#">
-                                        <img src="http://img.chuguoqu.com/g1/M00/02/9E/eSl1sVZOwLiAOlVTAACpViCJmuI983.jpg" />
-                                    </a>
-                                </div>
-                                <div className="ycpbbb">
-                                    <a href="#">
-                                        孩子和老人最佳选择——蛋岛浮潜半日游（含英文导游、快艇往返）
-                                    </a>
-                                    <p className="yqbl yleft">
-                                        <b>￥71</b>
-                                        <span>￥120</span>
-                                    </p>
-                                    <p className="yqbr yright">普吉岛</p>
-                                </div>
-                            </li>
-                            <li>
-                                <div>
-                                    <a href="#">
-                                        <img src="http://img.chuguoqu.com/g1/M00/02/9E/eSl1sVZOwLiAOlVTAACpViCJmuI983.jpg" />
-                                    </a>
-                                </div>
-                                <div className="ycpbbb">
-                                    <a href="#">
-                                        孩子和老人最佳选择——蛋岛浮潜半日游（含英文导游、快艇往返）
-                                    </a>
-                                    <p className="yqbl yleft">
-                                        <b>￥71</b>
-                                        <span>￥120</span>
-                                    </p>
-                                    <p className="yqbr yright">普吉岛</p>
-                                </div>
-                            </li>
-                            <li>
-                                <div>
-                                    <a href="#">
-                                        <img src="http://img.chuguoqu.com/g1/M00/02/9E/eSl1sVZOwLiAOlVTAACpViCJmuI983.jpg" />
-                                    </a>
-                                </div>
-                                <div className="ycpbbb">
-                                    <a href="#">
-                                        孩子和老人最佳选择——蛋岛浮潜半日游（含英文导游、快艇往返）
-                                    </a>
-                                    <p className="yqbl yleft">
-                                        <b>￥71</b>
-                                        <span>￥120</span>
-                                    </p>
-                                    <p className="yqbr yright">普吉岛</p>
-                                </div>
-                            </li>
-                            <li>
-                                <div>
-                                    <a href="#">
-                                        <img src="http://img.chuguoqu.com/g1/M00/02/9E/eSl1sVZOwLiAOlVTAACpViCJmuI983.jpg" />
-                                    </a>
-                                </div>
-                                <div className="ycpbbb">
-                                    <a href="#">
-                                        孩子和老人最佳选择——蛋岛浮潜半日游（含英文导游、快艇往返）
-                                    </a>
-                                    <p className="yqbl yleft">
-                                        <b>￥71</b>
-                                        <span>￥120</span>
-                                    </p>
-                                    <p className="yqbr yright">普吉岛</p>
-                                </div>
-                            </li>
-                            <li>
-                                <div>
-                                    <a href="#">
-                                        <img src="http://img.chuguoqu.com/g1/M00/02/9E/eSl1sVZOwLiAOlVTAACpViCJmuI983.jpg" />
-                                    </a>
-                                </div>
-                                <div className="ycpbbb">
-                                    <a href="#">
-                                        孩子和老人最佳选择——蛋岛浮潜半日游（含英文导游、快艇往返）
-                                    </a>
-                                    <p className="yqbl yleft">
-                                        <b>￥71</b>
-                                        <span>￥120</span>
-                                    </p>
-                                    <p className="yqbr yright">普吉岛</p>
-                                </div>
-                            </li>
-                            <li>
-                                <div>
-                                    <a href="#">
-                                        <img src="http://img.chuguoqu.com/g1/M00/02/9E/eSl1sVZOwLiAOlVTAACpViCJmuI983.jpg" />
-                                    </a>
-                                </div>
-                                <div className="ycpbbb">
-                                    <a href="#">
-                                        孩子和老人最佳选择——蛋岛浮潜半日游（含英文导游、快艇往返）
-                                    </a>
-                                    <p className="yqbl yleft">
-                                        <b>￥71</b>
-                                        <span>￥120</span>
-                                    </p>
-                                    <p className="yqbr yright">普吉岛</p>
-                                </div>
-                            </li>
+
+                        {
+                            this.state.arr.map(function(item,i){
+                                return(
+                                    <li key={i}>
+                                        <div>
+                                            <a href="#">
+                                                <img src={item.img} />
+                                            </a>
+                                        </div>
+                                        <div className="ycpbbb">
+                                            <a href="#">
+                                                {item.title}
+                                            </a>
+                                            <p className="yqbl yleft">
+                                                <b>￥{item.price}</b>
+                                            </p>
+                                            <p className="yqbr yright">{item.city}</p>
+                                        </div>
+                                    </li>
+                                )
+                            })
+                        }
+                           
                         </ul>
                     </div>
                     {/* 分页 */}
@@ -208,74 +152,30 @@ class Place extends Component {
                     <div className="yhqc">
                         <h2>发现好趣处</h2>
                         <ul>
-                            <li>
-                                <div className="yhqc_t">
-                                    <img src="http://img.chuguoqu.com/g1/M00/00/0A/yqWx5FM6W4eAZPDRAAc85_z_GM8175.jpg" />
-                                </div>
-                                <div className="yhqc_b">
-                                    <p>Roctopus Dive潜水学校</p>
-                                    <p>Roctopus Dive</p>
-                                    <div className="yxx">
-                                        <i />
-                                        <i />
-                                        <i />
-                                        <i />
-                                        <i />
-                                    </div>
-                                    <span className="yright">苏梅岛</span>
-                                </div>
-                            </li>
-                            <li>
-                                <div className="yhqc_t">
-                                    <img src="http://img.chuguoqu.com/g1/M00/00/0A/yqWx5FM6W4eAZPDRAAc85_z_GM8175.jpg" />
-                                </div>
-                                <div className="yhqc_b">
-                                    <p>Roctopus Dive潜水学校</p>
-                                    <p>Roctopus Dive</p>
-                                    <div className="yxx">
-                                        <i />
-                                        <i />
-                                        <i />
-                                        <i />
-                                        <i />
-                                    </div>
-                                    <span className="yright">苏梅岛</span>
-                                </div>
-                            </li>
-                            <li>
-                                <div className="yhqc_t">
-                                    <img src="http://img.chuguoqu.com/g1/M00/00/0A/yqWx5FM6W4eAZPDRAAc85_z_GM8175.jpg" />
-                                </div>
-                                <div className="yhqc_b">
-                                    <p>Roctopus Dive潜水学校</p>
-                                    <p>Roctopus Dive</p>
-                                    <div className="yxx">
-                                        <i />
-                                        <i />
-                                        <i />
-                                        <i />
-                                        <i />
-                                    </div>
-                                    <span className="yright">苏梅岛</span>
-                                </div>
-                            </li>
-                            <li>
-                                <div className="yhqc_t">
-                                    <img src="http://img.chuguoqu.com/g1/M00/00/0A/yqWx5FM6W4eAZPDRAAc85_z_GM8175.jpg" />
-                                </div>
-                                <div className="yhqc_b">
-                                    <p>Roctopus Dive潜水学校</p>
-                                    <p>Roctopus Dive</p>
-                                    <div className="yxx">
-                                        <i />
-                                        <i />
-                                        <i />
-                                        <i />
-                                        <i />
-                                    </div>
-                                    <span className="yright">苏梅岛</span>
-                                </div>
-                            </li>
+                        {
+                            this.state.haoquchu.map(function(item,i){
+                                return(
+                                    <li key={i}>
+                                        <div className="yhqc_t">
+                                            <img src={item.img} />
+                                        </div>
+                                        <div className="yhqc_b">
+                                            <p>{item.title}</p>
+                                            <p>{item.etitle}</p>
+                                            <div className="yxx">
+                                                <i />
+                                                <i />
+                                                <i />
+                                                <i />
+                                                <i />
+                                            </div>
+                                            <span className="yright">{item.city}</span>
+                                        </div>
+                                    </li>
+                                )
+                            })
+                        }
+
                         </ul>
                     </div>
                 </div>
