@@ -8,7 +8,7 @@ class Ylbt extends Component {
     componentDidMount() {
         //轮播图
         $(function() {
-            clearInterval(timer);
+            clearInterval(this.timer);
                 var olw = $("#ylbtul")
                 .find("li")
                 .eq(0);
@@ -21,14 +21,14 @@ class Ylbt extends Component {
                 .width($("#ylbtul").width() / 4);
             var i = 0;
             $(".ybtn1").click(function() {
-                clearInterval(timer);
+                clearInterval(this.timer);
                 i--;
                 if (i <= -1) {
                     i = 2;
                     $("#ylbtul").css({ left: -3 * olw.width() });
                 }
                 $("#ylbtul").animate({ left: -i * olw.width() });
-                timer=setInterval(function(){
+                this.timer=setInterval(function(){
                     i++;
                     if (i >= 4) {
                         i = 1;
@@ -38,14 +38,14 @@ class Ylbt extends Component {
                 },3000);
             });
             $(".ybtn2").click(function() {
-                clearInterval(timer);
+                clearInterval(this.timer);
                 i++;
                 if (i >= 4) {
                     i = 1;
                     $("#ylbtul").css({ left: 0 });
                 }
                 $("#ylbtul").animate({ left: -i * olw.width() });
-                timer=setInterval(function(){
+                this.timer=setInterval(function(){
                     i++;
                     if (i >= 4) {
                         i = 1;
@@ -54,7 +54,7 @@ class Ylbt extends Component {
                     $("#ylbtul").animate({ left: -i * olw.width() });
                 },3000)
             });
-           var timer=setInterval(function(){
+            this.timer=setInterval(function(){
                 i++;
                 if (i >= 4) {
                     i = 1;
@@ -64,6 +64,9 @@ class Ylbt extends Component {
             },3000)
         });
         //结束
+    }
+    componentWillUnmount(){
+        clearInterval(this.timer);
     }
     render() {
         return (

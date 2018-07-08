@@ -15,8 +15,8 @@ class Place extends Component {
         return (
             <div id="yb">
                 <Head />
+                <div className="yfj" />
                 <div className="ybz">
-                    <div className="yfj" />
                     <ul className="ymdd">
                         <li>
                             目的地　<span>&gt;</span>
