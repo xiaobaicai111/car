@@ -37,9 +37,11 @@ class Head extends Component {
                         <input className="l_search" type="text" />
                         <button className="l_ser_icon"></button>
                     </span>
-                    <Link to="/" className="l_login">登录</Link>
-                    <Link to="/register" className="l_register">注册</Link>
+
                     
+                <Link to="/login" className="l_login">登录</Link>
+                <Link to="/register" className="l_register">注册</Link>
+
                 </div>
             </div>
         );

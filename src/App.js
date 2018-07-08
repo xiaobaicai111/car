@@ -3,7 +3,7 @@ import {BrowserRouter as Router,Route,Redirect,Switch} from "react-router-dom";
 import Home from "./components/home";
 import Appxiazai from "./components/appxiazai";
 import "./css/App.css";
-
+import Login from './components/login';
 import "./css/lincss.css";
 import $ from "jquery";
 import Cart from './components/cart';
@@ -17,7 +17,18 @@ class App extends Component {
 
   }
 
+import Store from './redux/Store'
+class App extends Component {
+  constructor(props){
+    super(props);
+    this.changeactive.bind(this);
+    
+  }
+  changeactive(){
+    console.log($(this))
+  }
 
+  
   render() {
     return (
       <div className="App">
@@ -31,6 +42,7 @@ class App extends Component {
               <Route path="/hotel" component={Hotel}></Route>
               <Route path="/cart" component={Cart}></Route>
               <Route path="/applation" component={Appxiazai}></Route>
+              <Route path="/login" component={Login}></Route>
               <Route path="/register" component={Register}></Route>
               <Redirect to="/home"/>
             </Switch>
