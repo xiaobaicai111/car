@@ -249,6 +249,8 @@ class Xiangqing extends Component {
                         i = 1;
                         $(".ygmtl_lbt ul").css({ left: 0 });
                     }
+
+                    
                     $(".ygmtl_lbt ul").animate({ left: -i * olw.width() });
                 },3000)
             });
