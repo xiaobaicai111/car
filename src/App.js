@@ -11,13 +11,7 @@ import Register from './components/register';
 import Hotel from './components/hotel';
 import Place from './components/place';
 
-class App extends Component {
-  constructor(props){
-    super(props);
-
-  }
-
-import Store from './redux/Store'
+import Store from './redux/Store';
 class App extends Component {
   constructor(props){
     super(props);
