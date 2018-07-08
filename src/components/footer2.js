@@ -7,19 +7,19 @@ class Footer02 extends Component {
             
             <div className="l_footleft2">
                 <p className="l_gy2">
-                    <a href="#">关于出国去</a>
-                    <a href="#">加入我们</a>
-                    <a href="#">联系我们</a>
-                    <a href="#">帮助中心</a>
-                    <a href="#">法律声明</a>
-                    <a href="#">友情链接</a>
-                    <a href="#">意见反馈</a>
-                    <a href="#">Business Cooperation</a>
-                    <a href="#">网站地图</a>
-                    <a href="#">分销合作</a>
+                    <a href="">关于出国去</a>
+                    <a href="">加入我们</a>
+                    <a href="">联系我们</a>
+                    <a href="">帮助中心</a>
+                    <a href="">法律声明</a>
+                    <a href="">友情链接</a>
+                    <a href="">意见反馈</a>
+                    <a href="">Business Cooperation</a>
+                    <a href="">网站地图</a>
+                    <a href="">分销合作</a>
                 </p>
                 <p >出国去网站制定内容运营商：厦门博游旅游股份有限公司　　唯一指定的境外旅游服务策供方：厦门博游旅游股份有限公司</p>
-               
+
                 <p>Copyright&copy;2013-2017出国去chuguo.com All rights reserver 厦门博旅旅游股份有限公司 闽ICP备12023338号-1增值电信业务经营许可证 闽B2-20160082</p>
             </div>
             <div className="l_footright2">

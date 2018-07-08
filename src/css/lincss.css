@@ -5,6 +5,10 @@
     height: 80px;
     margin: 0 auto;
 }
+.l_head a{
+
+    cursor: pointer;
+}
 .active{
     background: #ff2020;
     color: white;
@@ -187,7 +191,6 @@ padding-left: 0;
 .l_yq div a{
     display: inline-block;
     height: 14px;
-    font-size: 12px;
     padding: 0 10px;
     margin-top: 10px;
 }

@@ -100,3 +100,17 @@ em,i{
     background: url("../image/login.png");
     background-position: -80px 280px;
 }
+
+#verify {
+    height: 34px;
+    vertical-align: top;
+    font-size: 16px;
+}
+
+#code_img {
+    display: inline-block;
+    width: 100px;
+    height: 40px;
+    cursor: pointer;
+    vertical-align: top;
+}
