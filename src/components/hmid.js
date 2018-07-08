@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link} from "react-router-dom";
 import "../css/hao.css";
 import "../mock/mock";
 import $ from "jquery";
@@ -19,7 +20,7 @@ class Hmid extends Component {
             url: "http://www.baidu.com/api",
             dataType: "json",
             success: function (data) {
-                console.log(data);
+                // console.log(data);
                 _this.setState({arr:data.user})
             }
         });
@@ -58,9 +59,7 @@ class Hmid extends Component {
 
 
     render() {
-        console.log(this.state);
-        
-
+        // console.log(this.state);
 
         return (
             <div>
@@ -72,34 +71,46 @@ class Hmid extends Component {
                         </div>
                         <ul className="h-countrytj">
                             <li>
-                                <img src={require('../image/aozhou.jpg')} alt="澳大利亚" title="澳大利亚Australia"/>
-                                <h2>澳大利亚</h2>
-                                <p>Australia</p>
+                                <Link to={`/place/0`}>
+                                    <img src={require('../image/aozhou.jpg')} alt="澳大利亚" title="澳大利亚Australia"/>
+                                    <h2>澳大利亚</h2>
+                                    <p>Australia</p>
+                                </Link>
                             </li>
                             <li>
+                            <Link to={`/place/1`}>
                                 <img src={require('../image/japan.jpg')} alt="日本" title="日本Japan"/>
                                 <h2>日本</h2>
                                 <p>Japan</p>
+                            </Link>
                             </li>
                             <li>
+                            <Link to={`/place/2`}>
                                 <img src={require('../image/singapore.jpg')} alt="新加坡" title="新加坡Singapore"/>
                                 <h2 style={{width:'580px'}}>新加坡</h2>
                                 <p style={{width:'580px'}}>Singapore</p>
+                            </Link>
                             </li>
                             <li>
+                            <Link to={`/place/3`}>
                                 <img src={require('../image/thailand.jpg')} alt="泰国" title="泰国Thailand"/>
                                 <h2 style={{width:'580px'}}>泰国</h2>
                                 <p style={{width:'580px'}}>Thailand</p>
+                            </Link>
                             </li>
                             <li>
+                            <Link to={`/place/4`}>
                                 <img src={require('../image/hongkong.jpg')} alt="中国香港" title="中国香港Hongkong"/>
                                 <h2>中国香港</h2>
                                 <p>Hongkong</p>
+                            </Link>
                             </li>
                             <li>
+                            <Link to={`/place/5`}>
                                 <img src={require('../image/taiwan.jpg')} alt="中国台湾" title="中国台湾Taiwan"/>
                                 <h2>中国台湾</h2>
                                 <p>Taiwan</p>
+                            </Link>
                             </li>
                             <li>
                                 <img src={require('../image/macao.jpg')} alt="中国澳门" title="中国澳门Macao"/>

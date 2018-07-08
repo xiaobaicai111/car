@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
 import Head from "./head";
 import Footer02 from "./footer2";
+import $ from "jquery";
 
 class Cart extends Component {
     constructor(props){
         super(props)
+    }
+
+    componentDidMount(){
+        
     }
 
     render() {
@@ -48,7 +53,7 @@ class Cart extends Component {
                         </div>
                         <div className="h-carttable">
                             <div className="h-cartproduct">
-                                <ul className="h-productlist">
+                                <ul className="h-productlist" key={1}>
                                     <li className="h-td h-td-check">
                                         <input type="checkbox" id="key1" className="h-cbxipt"/>
                                         <label fro="key1" className="h-tdselected"></label>
