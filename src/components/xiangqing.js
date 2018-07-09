@@ -11,7 +11,12 @@ class Xiangqing extends Component {
                 arr: [],
                 tu: [],
                 oindex:0,
-                ocityid:0
+                ocityid:0,
+                lng:0, 
+                lat:0,
+                name:"",
+                areaName:''
+
             });
     }
     dianji(abc) {
@@ -40,8 +45,8 @@ class Xiangqing extends Component {
             url: "http://route.showapi.com/268-1",
             dataType: "json",
             data: {
-                showapi_appid: "69224", //这里需要改成自己的appid
-                showapi_sign: "bc60c653279549ce877e44281d9839e3", //这里需要改成自己的应用的密钥secret
+                showapi_appid: "69266", //这里需要改成自己的appid
+                showapi_sign: "05e6f56673d74f6696d479e13ee7a657", //这里需要改成自己的应用的密钥secret
                 keyword: "泰山",
                 proId: "",
                 cityId: "",
@@ -56,7 +61,13 @@ class Xiangqing extends Component {
                 //console.log(result.showapi_res_body.pagebean.contentlist) //console变量在ie低版本下不能用
                 _this.setState({
                     arr: result.showapi_res_body.pagebean.contentlist[oindex]
+                    
                 });
+                console.log(result.showapi_res_body.pagebean.contentlist,result.showapi_res_body.pagebean.contentlist[oindex])
+                _this.setState({lng:result.showapi_res_body.pagebean.contentlist[oindex].location.lon});
+                _this.setState({lat:result.showapi_res_body.pagebean.contentlist[oindex].location.lat});
+                _this.setState({name:result.showapi_res_body.pagebean.contentlist[oindex].name});
+                _this.setState({areaName:result.showapi_res_body.pagebean.contentlist[oindex].areaName});
             }
         });
         // console.log(this.props.location.query)
@@ -449,7 +460,7 @@ class Xiangqing extends Component {
         }
     }
     render() {
-        // console.log(this.oindex,this.ocityid);
+        //  console.log(this.oindex,this.ocityid);
         return (
             <div id="yxq">
                 <Head />
@@ -664,16 +675,16 @@ class Xiangqing extends Component {
                             {/* this.state.arr.location.lon */}
                             {/* this.state.arr.location.lat */}
                             <Map
-                                center={{ lng: 123, lat: 123 }}
+                                center={{ lng:this.state.lng, lat:this.state.lat}}
                                 zoom="12"
                                 style={{ height: "400px" }}
                             >
-                                <Marker position={{ lng: 123, lat: 123 }} />
+                                <Marker position={{lng:this.state.lng, lat:this.state.lat}} />
                                 <NavigationControl />
                                 <InfoWindow
-                                    position={{ lng: 123, lat: 123 }}
-                                    text="上海市"
-                                    title="东方明珠"
+                                    position={{lng:this.state.lng, lat:this.state.lat}}
+                                    text={this.state.areaName}
+                                    title={this.state.name}
                                 />
                             </Map>
                         </div>

@@ -4,9 +4,6 @@ import "../css/ylbt.css";
 class Ylbt extends Component {
     constructor(props) {
         super(props);
-        this.state={
-            
-        }
     }
     componentDidMount() {
         //轮播图
@@ -69,6 +66,10 @@ class Ylbt extends Component {
             
         });
         //结束
+
+    }
+    search(){
+        // console.log(this.refs.ysech.value);
     }
     componentWillUnmount(){
         clearInterval(this.timer)
@@ -91,7 +92,7 @@ class Ylbt extends Component {
                 <div id="yssk">
                     <div className="yss">
                         <input type="text" placeholder="请输入目的地或者产品名称，例如：香港" id="ysearch" ref="ysech"/>
-                        <a className="icon"></a>
+                        <a className="icon" onClick={this.search.bind(this)}></a>
                     </div>
                 </div>
             </div>
