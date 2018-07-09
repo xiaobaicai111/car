@@ -3,10 +3,13 @@ import Head from "./head";
 import Footer2 from "./footer2";
 import "../css/xq.css";
 import $ from "jquery";
-import {Map, Marker, NavigationControl, InfoWindow,BMap} from 'react-bmap';
+import {Map, Marker, NavigationControl, InfoWindow} from 'react-bmap';
 class Xiangqing extends Component {
     constructor(props){
-        super(props)
+        super(props),
+        this.state={
+            arr:[]
+        }
     }
     dianji(abc){
         $(function(){
@@ -14,18 +17,33 @@ class Xiangqing extends Component {
             $("html,body").animate({scrollTop:$(abc).offset().top})
         })
     }
+    
     componentDidMount() {
+        var _this=this;
+        $.ajax({
+            type: "get",
+            url: "http://www.baidu.com/api",
+            dataType: "json",
+            success: function (data) {
+                _this.setState({arr:data.xq});
+                console.log(data.xq,_this.props.location.query)
+            }
+        });
+        // console.log(this.props.location.query)
         // console.log($("#yxqnav").offset().top)
         $(function(){
             var ogd=$("#yxqnav").offset().top;
-            $(window).scroll( function() { 
-                if($("html,body").scrollTop()>$("#yxqnav").offset().top){
-                    $("#yxqnav_2").css({"position":"fixed","top":"0"})
-                }else if($("html,body").scrollTop()<ogd){
-                    $("#yxqnav_2").css({"position":"static"})
+            $(window).bind("scroll",function() { 
+                if($("#yxq").length==1){
+                    if($("html,body").scrollTop()>$("#yxqnav").offset().top){
+                        $("#yxqnav_2").css({"position":"fixed","top":"0"})
+                    }else if($("html,body").scrollTop()<ogd){
+                        $("#yxqnav_2").css({"position":"static"})
+                    }
                 }
              } );
         })
+        
         // 
         $(function(){
             var dateStr='<div class="date-list"><div class="header clearfix"><div class="header-left fl">&lt;</div><div class="fl"><select class="year"></select></div><div class="fl"><select class="month"><option value="1">1月</option><option value="2">2月</option><option value="3">3月</option><option value="4">4月</option><option value="5">5月</option><option value="6">6月</option><option value="7">7月</option><option value="8">8月</option><option value="9">9月</option><option value="10">10月</option><option value="11">11月</option><option value="12">12月</option></select></div><div class="header-right fl">&gt;</div><div class="fr today">今日</div></div><table><thead><tr><th>一</th><th>二</th><th>三</th><th>四</th><th>五</th><th>六</th><th>日</th></tr></thead><tbody><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr></tbody></table></div>'
@@ -186,6 +204,69 @@ class Xiangqing extends Component {
             }
         })
         // 
+        //轮播图
+        $(function() {
+            clearInterval(timers);
+                var olw = $(".ygmtl_lbt ul")
+                .find("li")
+                .eq(0);
+            $(".ygmtl_lbt ul").css({
+                width: olw.width() * $(".ygmtl_lbt ul").find("li").length,
+                position: "absolute"
+            });
+            $(".ygmtl_lbt ul")
+                .find("li")
+                .width($(".ygmtl_lbt ul").width() / 4);
+            var i = 0;
+            $(".yxqbtn2").click(function() {
+                clearInterval(timers);
+                i--;
+                if (i <= -1) {
+                    i = 2;
+                    $(".ygmtl_lbt ul").css({ left: -3 * olw.width() });
+                }
+                $(".ygmtl_lbt ul").animate({ left: -i * olw.width() });
+                timers=setInterval(function(){
+                    i++;
+                    if (i >= 4) {
+                        i = 1;
+                        $(".ygmtl_lbt ul").css({ left: 0 });
+                    }
+                    $(".ygmtl_lbt ul").animate({ left: -i * olw.width() });
+                },3000);
+            });
+            $(".yxqbtn1").click(function() {
+                clearInterval(timers);
+                i++;
+                if (i >= 4) {
+                    i = 1;
+                    $(".ygmtl_lbt ul").css({ left: 0 });
+                }
+                $(".ygmtl_lbt ul").animate({ left: -i * olw.width() });
+                timers=setInterval(function(){
+                    i++;
+                    if (i >= 4) {
+                        i = 1;
+                        $(".ygmtl_lbt ul").css({ left: 0 });
+                    }
+
+                    
+                    $(".ygmtl_lbt ul").animate({ left: -i * olw.width() });
+                },3000)
+            });
+            var timers=setInterval(function(){
+                i++;
+                if (i >= 4) {
+                    i = 1;
+                    $(".ygmtl_lbt ul").css({ left: 0 });
+                }
+                $(".ygmtl_lbt ul").animate({ left: -i * olw.width() });
+            },3000)
+        });
+        //结束
+    }
+    componentWillUnmount(){
+        clearInterval(this.timers);
     }
     slxz(){
         $(".yslxz_c").css({"display":"block"})
@@ -243,24 +324,42 @@ class Xiangqing extends Component {
                         <li>
                             目的地<span>&gt;</span>
                         </li>
-                        <li>泰国</li>
+                        <li>{this.state.arr.address}</li>
                     </ul>
                     <div className="ygmt">
                         <div className="ygmtl yleft">
                             <div className="yxqbt">
                                 <h1>
-                                    皮皮岛+鸡蛋岛快艇1日游（含中文导游、全岛接送、浮潜用具）
+                                    {/* 皮皮岛+鸡蛋岛快艇1日游（含中文导游、全岛接送、浮潜用具） */}
+                                    {this.state.arr.city}
                                 </h1>
                                 <h2>
-                                    一应俱全的海岛也有着原始的迷人气息，你需要用心感受这片自然之美
+                                {this.state.arr.title}
                                 </h2>
                             </div>
                             <div className="ygmtl_box">
                                 <div className="ygmtl_lbt">
+                                <div className="ybtn ybtn3 yxqbtn1">&lt;</div>
+                                <div className="ybtn ybtn3 yxqbtn2">&gt;</div>
                                     <ul>
+                                    <li>
+                                            <img
+                                                src={this.state.arr.img1}
+                                            />
+                                        </li>
                                         <li>
                                             <img
-                                                src={require("../image/xqlbt.jpg")}
+                                                src={this.state.arr.img2}
+                                            />
+                                        </li>
+                                        <li>
+                                            <img
+                                                src={this.state.arr.img3}
+                                            />
+                                        </li>
+                                        <li>
+                                            <img
+                                                src={this.state.arr.img1}
                                             />
                                         </li>
                                     </ul>
@@ -271,14 +370,14 @@ class Xiangqing extends Component {
                             <div className="ygmtr_bt">
                                 <p>
                                     <b>成人</b>
-                                    <span>$306</span>
+                                    <span>￥{this.state.arr.price}</span>
                                     <b>儿童</b>
-                                    <span>$306</span>
+                                    <span>￥{this.state.arr.price1}</span>
                                 </p>
                                 <p>
                                     <i>当地价：</i>
-                                    <span>成人$306</span>
-                                    <span>儿童$306</span>
+                                    <span>成人￥{this.state.arr.price2}</span>
+                                    <span>儿童￥{this.state.arr.price3}</span>
                                 </p>
                             </div>
                             <div className="ygmtr_rq yoption">
@@ -396,7 +495,7 @@ class Xiangqing extends Component {
                         <Map center={{lng:121.487899486, lat:31.24916171}} zoom="12" style={{"height":"400px"}}>
                             <Marker position={{lng:121.487899486, lat:31.249161716}} />
                             <NavigationControl />
-                            <InfoWindow position={{lng:121.487899486, lat:31.24916171}} text="上海" title="东方明珠"/>
+                            <InfoWindow position={{lng:121.487899486, lat:31.24916171}} text="上海市" title="东方明珠"/>
                         </Map>
                         </div>
                     </div>
