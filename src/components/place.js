@@ -138,12 +138,12 @@ class Place extends Component {
                                 return(
                                     <li key={i}>
                                         <div>
-                                        <Link to={{pathname:"/xiangqing",query:{name:item.areaId,index:i}}}>
+                                        <Link to={"/xiangqing/"+i}>
                                                 <img src={item.picList[0].picUrlSmall} />
                                         </Link>
                                         </div>
                                         <div className="ycpbbb">
-                                        <Link to={{pathname:"/xiangqing",query:{name:item.areaId,index:i}}}>
+                                        <Link to={"/xiangqing/"+i}>
                                                 {item.name}
                                                 </Link>
                                             <p className="yqbl yleft">

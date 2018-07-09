@@ -38,7 +38,7 @@ class App extends Component {
               <Route path="/applation" component={Appxiazai}></Route>
               <Route path="/login" component={Login}></Route>
               <Route path="/register" component={Register}></Route>
-              <Route path="/xiangqing" component={Xiangqing}></Route>
+              <Route path="/xiangqing/:id" component={Xiangqing}></Route>
               <Redirect to="/home"/>
             </Switch>
           </div>

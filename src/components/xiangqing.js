@@ -28,10 +28,10 @@ class Xiangqing extends Component {
 
     componentDidMount() {
         var _this = this;
-        var oid = this.props.location.query.name;
-        var oindex = this.props.location.query.index;
+        // var oid = this.props.location.query.name;
+        var oindex = this.props.match.params.id;
         this.setState({oindex:oindex});
-        this.setState({ocityid:oid});
+        // this.setState({ocityid:oid});
         $.ajax({
             type: "get",
             url: "http://www.baidu.com/api",
@@ -50,7 +50,7 @@ class Xiangqing extends Component {
                 keyword: "泰山",
                 proId: "",
                 cityId: "",
-                areaId: oid,
+                areaId: "",
                 page: ""
             },
 
