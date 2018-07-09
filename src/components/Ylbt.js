@@ -4,11 +4,14 @@ import "../css/ylbt.css";
 class Ylbt extends Component {
     constructor(props) {
         super(props);
+        this.state={
+            
+        }
     }
     componentDidMount() {
         //轮播图
         $(function() {
-            clearInterval(timer);
+            clearInterval(this.timer);
                 var olw = $("#ylbtul")
                 .find("li")
                 .eq(0);
@@ -20,15 +23,24 @@ class Ylbt extends Component {
                 .find("li")
                 .width($("#ylbtul").width() / 4);
             var i = 0;
+            var _this=this;
+            this.timer=setInterval(function(){
+                i++;
+                if (i >= 4) {
+                    i = 1;
+                    $("#ylbtul").css({ left: 0 });
+                }
+                $("#ylbtul").animate({ left: -i * olw.width() });
+            },3000)
             $(".ybtn1").click(function() {
-                clearInterval(timer);
+                clearInterval(_this.timer);
                 i--;
                 if (i <= -1) {
                     i = 2;
                     $("#ylbtul").css({ left: -3 * olw.width() });
                 }
                 $("#ylbtul").animate({ left: -i * olw.width() });
-                timer=setInterval(function(){
+                _this.timer=setInterval(function(){
                     i++;
                     if (i >= 4) {
                         i = 1;
@@ -38,14 +50,14 @@ class Ylbt extends Component {
                 },3000);
             });
             $(".ybtn2").click(function() {
-                clearInterval(timer);
+                clearInterval(_this.timer);
                 i++;
                 if (i >= 4) {
                     i = 1;
                     $("#ylbtul").css({ left: 0 });
                 }
                 $("#ylbtul").animate({ left: -i * olw.width() });
-                timer=setInterval(function(){
+                _this.timer=setInterval(function(){
                     i++;
                     if (i >= 4) {
                         i = 1;
@@ -54,19 +66,12 @@ class Ylbt extends Component {
                     $("#ylbtul").animate({ left: -i * olw.width() });
                 },3000)
             });
-            var timer=setInterval(function(){
-                i++;
-                if (i >= 4) {
-                    i = 1;
-                    $("#ylbtul").css({ left: 0 });
-                }
-                $("#ylbtul").animate({ left: -i * olw.width() });
-            },3000)
+            
         });
         //结束
     }
     componentWillUnmount(){
-        clearInterval(this.timer);
+        clearInterval(this.timer)
     }
     render() {
         return (
@@ -85,7 +90,7 @@ class Ylbt extends Component {
                 </div>
                 <div id="yssk">
                     <div className="yss">
-                        <input type="text" placeholder="请输入目的地或者产品名称，例如：香港" />
+                        <input type="text" placeholder="请输入目的地或者产品名称，例如：香港" id="ysearch" ref="ysech"/>
                         <a className="icon"></a>
                     </div>
                 </div>

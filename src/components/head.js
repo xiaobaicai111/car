@@ -22,7 +22,7 @@ class Head extends Component {
 
     componentDidMount(){
         Store.subscribe(this.onchanges);
-        console.log(this.state);
+        // console.log(this.state);
         if(this.state.name.user){
             $(".l_userinfo").css("display","none");
             $(".l_user").css("display","inline-block");

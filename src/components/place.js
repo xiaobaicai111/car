@@ -20,19 +20,51 @@ class Place extends Component {
             url: "http://www.baidu.com/api",
             dataType: "json",
             success: function (data) {
-                 _this.setState({arr:data.lvyou});
+                //  _this.setState({arr:data.lvyou});
                  _this.setState({haoquchu:data.haoquchu});
             }
         });
         // 总页数
         _this.setState({totalpage:Math.ceil(_this.state.arr.length/this.state.pagesize)})
+        
+        $.ajax({
+            type: 'post',
+            url: 'http://route.showapi.com/268-1',
+            dataType: 'json',
+            data: {
+                "showapi_appid": '69224', //这里需要改成自己的appid
+                "showapi_sign": 'bc60c653279549ce877e44281d9839e3',  //这里需要改成自己的应用的密钥secret
+                "keyword":"泰山",
+                "proId":"",
+                "cityId":"",
+                "areaId":"",
+                "page":""
+        
+            },
+        
+            error: function(XmlHttpRequest, textStatus, errorThrown) {
+                alert("操作失败!");
+            },
+            success: function(result) {
+                //console.log(result.showapi_res_body.pagebean.contentlist) //console变量在ie低版本下不能用
+                _this.setState({arr:result.showapi_res_body.pagebean.contentlist});
+            }
+        });
+    
+
 
     }
-
+    fenye(){
+        if(this.state.arr.length>12){
+        }else{
+            console.log(this.state.arr.length)
+        }
+    }
 
     top() {
         $("body,html").animate({ scrollTop: 0 }, 1000);
     }
+
     render() {
         // console.log(this.state.arr,this.state.haoquchu)
         return (
@@ -101,31 +133,28 @@ class Place extends Component {
                     </div>
                     <div className="ycpli">
                         <ul>
-
-                        {
-                            this.state.arr.map(function(item,i){
+                        {this.state.arr.map(function(item,i){
+                            if(i<=11){
                                 return(
                                     <li key={i}>
-                                   
                                         <div>
-                                        <Link to={{pathname:"/xiangqing",query:{name:item.id}}}>
-                                                <img src={item.img} />
+                                        <Link to={{pathname:"/xiangqing",query:{name:item.areaId,index:i}}}>
+                                                <img src={item.picList[0].picUrlSmall} />
                                         </Link>
                                         </div>
                                         <div className="ycpbbb">
-                                        <Link to={{pathname:"/xiangqing",query:{name:item.id}}}>
-                                                {item.title}
+                                        <Link to={{pathname:"/xiangqing",query:{name:item.areaId,index:i}}}>
+                                                {item.name}
                                                 </Link>
                                             <p className="yqbl yleft">
-                                                <b>￥{item.price}</b>
+                                                <b>￥{item.cityId}</b>
                                             </p>
-                                            <p className="yqbr yright">{item.city}</p>
+                                            <p className="yqbr yright">{item.cityName}</p>
                                         </div>
                                     </li>
                                 )
-                            })
-                        }
-                           
+                            }
+                            })}
                         </ul>
                     </div>
                     {/* 分页 */}
@@ -134,15 +163,6 @@ class Place extends Component {
                             <a href="#">
                                 <span />
                             </a>
-                        </li>
-                        <li>
-                            <a href="#">3</a>
-                        </li>
-                        <li>
-                            <a href="#">2</a>
-                        </li>
-                        <li>
-                            <a href="#">1</a>
                         </li>
                         <li className="yxyy yyy">
                             <a href="#">
