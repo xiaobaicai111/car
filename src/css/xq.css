@@ -504,10 +504,12 @@ input[type="number"] {
     width: 6300px;
     height: 360px;
     left: 0px;
+    overflow: hidden;
     z-index: auto;
 }
 .ygmtl_lbt ul li{
     float:left;
+    overflow: hidden;
 }
 .ybtn3{
     z-index:100;

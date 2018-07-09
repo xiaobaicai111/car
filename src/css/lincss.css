@@ -59,7 +59,7 @@
 }
 .l_ser_icon{
     position: absolute;
-    right: 40px;
+    right: 35px;
     width: 33px;
     height: 33px;
     border: 0;
@@ -73,7 +73,7 @@
     border-radius:15px;
     padding-left:10px;
     border: 1px solid #bebebe;
-    margin: 0 40px;
+    margin: 0 35px;
 }
 .l_login,.l_register{
     font-size: 12px;
@@ -193,4 +193,27 @@ padding-left: 0;
     height: 14px;
     padding: 0 10px;
     margin-top: 10px;
+}
+.l_userinfo{
+    display:inline-block;
+}
+.l_user{
+    display:none;
+}
+.l_user span{
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    overflow: hidden;
+    color: #666666;
+    font-size: 14px;
+    line-height: 30px;
+}
+.l_user span:nth-of-type(2){
+    margin-left: 5px;
+}
+.l_user span img{
+    width: 30px;
+    height: 30px;
 }
