@@ -510,6 +510,8 @@ input[type="number"] {
 .ygmtl_lbt ul li{
     float:left;
     overflow: hidden;
+    width:700px;
+    height:360px;
 }
 .ybtn3{
     z-index:100;

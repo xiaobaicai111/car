@@ -10,6 +10,7 @@ class Xiangqing extends Component {
         this.state={
             arr:[]
         }
+        this.componentWillUnmount = this.componentWillUnmount.bind(this);
     }
     dianji(abc){
         $(function(){
@@ -206,7 +207,7 @@ class Xiangqing extends Component {
         // 
         //轮播图
         $(function() {
-            clearInterval(timers);
+            clearInterval(this.timers);
                 var olw = $(".ygmtl_lbt ul")
                 .find("li")
                 .eq(0);
@@ -218,15 +219,24 @@ class Xiangqing extends Component {
                 .find("li")
                 .width($(".ygmtl_lbt ul").width() / 4);
             var i = 0;
+            var _this=this;
+            this.timers=setInterval(function(){
+                i++;
+                if (i >= 4) {
+                    i = 1;
+                    $(".ygmtl_lbt ul").css({ left: 0 });
+                }
+                $(".ygmtl_lbt ul").animate({ left: -i * olw.width() });
+            },3000)
             $(".yxqbtn2").click(function() {
-                clearInterval(timers);
+                clearInterval(_this.timers);
                 i--;
                 if (i <= -1) {
                     i = 2;
                     $(".ygmtl_lbt ul").css({ left: -3 * olw.width() });
                 }
                 $(".ygmtl_lbt ul").animate({ left: -i * olw.width() });
-                timers=setInterval(function(){
+                _this.timers=setInterval(function(){
                     i++;
                     if (i >= 4) {
                         i = 1;
@@ -236,37 +246,28 @@ class Xiangqing extends Component {
                 },3000);
             });
             $(".yxqbtn1").click(function() {
-                clearInterval(timers);
+                clearInterval(_this.timers);
                 i++;
                 if (i >= 4) {
                     i = 1;
                     $(".ygmtl_lbt ul").css({ left: 0 });
                 }
                 $(".ygmtl_lbt ul").animate({ left: -i * olw.width() });
-                timers=setInterval(function(){
+                _this.timers=setInterval(function(){
                     i++;
                     if (i >= 4) {
                         i = 1;
                         $(".ygmtl_lbt ul").css({ left: 0 });
                     }
-
-                    
                     $(".ygmtl_lbt ul").animate({ left: -i * olw.width() });
                 },3000)
             });
-            var timers=setInterval(function(){
-                i++;
-                if (i >= 4) {
-                    i = 1;
-                    $(".ygmtl_lbt ul").css({ left: 0 });
-                }
-                $(".ygmtl_lbt ul").animate({ left: -i * olw.width() });
-            },3000)
+            
         });
         //结束
     }
     componentWillUnmount(){
-        clearInterval(this.timers);
+        clearTimeout(this.timers);
     }
     slxz(){
         $(".yslxz_c").css({"display":"block"})
