@@ -26,6 +26,32 @@ class Place extends Component {
         });
         // 总页数
         _this.setState({totalpage:Math.ceil(_this.state.arr.length/this.state.pagesize)})
+        
+        $.ajax({
+            type: 'post',
+            url: 'http://route.showapi.com/268-1',
+            dataType: 'json',
+            data: {
+                "showapi_appid": '65569', //这里需要改成自己的appid
+                "showapi_sign": '881c93a096664655909194e41476f50e',  //这里需要改成自己的应用的密钥secret
+                "keyword":"泰山",
+                "proId":"",
+                "cityId":"",
+                "areaId":"",
+                "page":""
+        
+            },
+        
+            error: function(XmlHttpRequest, textStatus, errorThrown) {
+                alert("操作失败!");
+            },
+            success: function(result) {
+                console.log(result.showapi_res_body.pagebean.contentlist) //console变量在ie低版本下不能用
+                // _this.setState({arr:result.showapi_res_body.pagebean.contentlist});
+            }
+        });
+    
+
 
     }
 
@@ -33,6 +59,7 @@ class Place extends Component {
     top() {
         $("body,html").animate({ scrollTop: 0 }, 1000);
     }
+
     render() {
         // console.log(this.state.arr,this.state.haoquchu)
         return (

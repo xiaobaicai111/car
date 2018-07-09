@@ -67,6 +67,7 @@ class Ylbt extends Component {
     }
     componentWillUnmount(){
         clearInterval(this.timer);
+        
     }
     render() {
         return (
@@ -85,7 +86,7 @@ class Ylbt extends Component {
                 </div>
                 <div id="yssk">
                     <div className="yss">
-                        <input type="text" placeholder="请输入目的地或者产品名称，例如：香港" />
+                        <input type="text" placeholder="请输入目的地或者产品名称，例如：香港" id="ysearch" ref="ysech"/>
                         <a className="icon"></a>
                     </div>
                 </div>
