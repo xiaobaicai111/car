@@ -28,7 +28,12 @@ class Place extends Component {
         _this.setState({totalpage:Math.ceil(_this.state.arr.length/this.state.pagesize)})
 
     }
-
+    fenye(){
+        if(this.state.arr.length>12){
+        }else{
+            console.log(this.state.arr.length)
+        }
+    }
 
     top() {
         $("body,html").animate({ scrollTop: 0 }, 1000);
@@ -101,12 +106,10 @@ class Place extends Component {
                     </div>
                     <div className="ycpli">
                         <ul>
-
-                        {
-                            this.state.arr.map(function(item,i){
+                        {this.state.arr.map(function(item,i){
+                            if(i<=11){
                                 return(
                                     <li key={i}>
-                                   
                                         <div>
                                         <Link to={{pathname:"/xiangqing",query:{name:item.id}}}>
                                                 <img src={item.img} />
@@ -123,9 +126,8 @@ class Place extends Component {
                                         </div>
                                     </li>
                                 )
-                            })
-                        }
-                           
+                            }
+                            })}
                         </ul>
                     </div>
                     {/* 分页 */}
@@ -134,15 +136,6 @@ class Place extends Component {
                             <a href="#">
                                 <span />
                             </a>
-                        </li>
-                        <li>
-                            <a href="#">3</a>
-                        </li>
-                        <li>
-                            <a href="#">2</a>
-                        </li>
-                        <li>
-                            <a href="#">1</a>
                         </li>
                         <li className="yxyy yyy">
                             <a href="#">
