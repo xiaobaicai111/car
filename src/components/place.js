@@ -51,7 +51,7 @@ class Place extends Component {
             }
         });
     
-
+        console.log(_this.props.location.query)
 
     }
     fenye(){

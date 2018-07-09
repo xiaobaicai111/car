@@ -30,6 +30,7 @@ class Head extends Component {
             $(".l_userinfo").css("display","inline-block");
             $(".l_user").css("display","none");
         }
+
     }
 
     render() {
@@ -49,7 +50,7 @@ class Head extends Component {
                         </ul>
                     </nav>
                     <span className="l_span">
-                        <input className="l_search" type="text" />
+                        <input className="l_search" type="text" ref="l_sech" id="l_sech"/>
                         <button className="l_ser_icon"></button>
                     </span>
 
