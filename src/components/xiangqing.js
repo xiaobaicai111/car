@@ -3,53 +3,97 @@ import Head from "./head";
 import Footer2 from "./footer2";
 import "../css/xq.css";
 import $ from "jquery";
-import {Map, Marker, NavigationControl, InfoWindow} from 'react-bmap';
+import { Map, Marker, NavigationControl, InfoWindow } from "react-bmap";
 class Xiangqing extends Component {
-    constructor(props){
+    constructor(props) {
         super(props),
-        this.state={
-            arr:[]
-        }
-        this.componentWillUnmount = this.componentWillUnmount.bind(this);
+            (this.state = {
+                arr: [],
+                tu: [],
+                oindex:0,
+                ocityid:0,
+                lng:0, 
+                lat:0,
+                name:"",
+                areaName:''
+
+            });
     }
-    dianji(abc){
-        $(function(){
-            //锚点跳转滑动效果  
-            $("html,body").animate({scrollTop:$(abc).offset().top})
-        })
+    dianji(abc) {
+        $(function() {
+            //锚点跳转滑动效果
+            $("html,body").animate({ scrollTop: $(abc).offset().top });
+        });
     }
-    
+
     componentDidMount() {
-        var _this=this;
+        var _this = this;
+        var oid = this.props.location.query.name;
+        var oindex = this.props.location.query.index;
+        this.setState({oindex:oindex});
+        this.setState({ocityid:oid});
         $.ajax({
             type: "get",
             url: "http://www.baidu.com/api",
             dataType: "json",
             success: function (data) {
-                _this.setState({arr:data.xq});
-                console.log(data.xq,_this.props.location.query)
+                _this.setState({tu:data.xq});
+            }
+        });
+        $.ajax({
+            type: "post",
+            url: "http://route.showapi.com/268-1",
+            dataType: "json",
+            data: {
+                showapi_appid: "69266", //这里需要改成自己的appid
+                showapi_sign: "05e6f56673d74f6696d479e13ee7a657", //这里需要改成自己的应用的密钥secret
+                keyword: "泰山",
+                proId: "",
+                cityId: "",
+                areaId: oid,
+                page: ""
+            },
+
+            error: function(XmlHttpRequest, textStatus, errorThrown) {
+                alert("操作失败!");
+            },
+            success: function(result) {
+                //console.log(result.showapi_res_body.pagebean.contentlist) //console变量在ie低版本下不能用
+                _this.setState({
+                    arr: result.showapi_res_body.pagebean.contentlist[oindex]
+                    
+                });
+                console.log(result.showapi_res_body.pagebean.contentlist,result.showapi_res_body.pagebean.contentlist[oindex])
+                _this.setState({lng:result.showapi_res_body.pagebean.contentlist[oindex].location.lon});
+                _this.setState({lat:result.showapi_res_body.pagebean.contentlist[oindex].location.lat});
+                _this.setState({name:result.showapi_res_body.pagebean.contentlist[oindex].name});
+                _this.setState({areaName:result.showapi_res_body.pagebean.contentlist[oindex].areaName});
             }
         });
         // console.log(this.props.location.query)
         // console.log($("#yxqnav").offset().top)
-        $(function(){
-            var ogd=$("#yxqnav").offset().top;
-            $(window).bind("scroll",function() { 
-                if($("#yxq").length==1){
-                    if($("html,body").scrollTop()>$("#yxqnav").offset().top){
-                        $("#yxqnav_2").css({"position":"fixed","top":"0"})
-                    }else if($("html,body").scrollTop()<ogd){
-                        $("#yxqnav_2").css({"position":"static"})
+        $(function() {
+            var ogd = $("#yxqnav").offset().top;
+            $(window).bind("scroll", function() {
+                if ($("#yxq").length == 1) {
+                    if (
+                        $("html,body").scrollTop() > $("#yxqnav").offset().top
+                    ) {
+                        $("#yxqnav_2").css({ position: "fixed", top: "0" });
+                    } else if ($("html,body").scrollTop() < ogd) {
+                        $("#yxqnav_2").css({ position: "static" });
                     }
                 }
-             } );
-        })
-        
-        // 
-        $(function(){
-            var dateStr='<div class="date-list"><div class="header clearfix"><div class="header-left fl">&lt;</div><div class="fl"><select class="year"></select></div><div class="fl"><select class="month"><option value="1">1月</option><option value="2">2月</option><option value="3">3月</option><option value="4">4月</option><option value="5">5月</option><option value="6">6月</option><option value="7">7月</option><option value="8">8月</option><option value="9">9月</option><option value="10">10月</option><option value="11">11月</option><option value="12">12月</option></select></div><div class="header-right fl">&gt;</div><div class="fr today">今日</div></div><table><thead><tr><th>一</th><th>二</th><th>三</th><th>四</th><th>五</th><th>六</th><th>日</th></tr></thead><tbody><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr></tbody></table></div>'
+            });
+        });
+
+        //
+        $(function() {
+            var dateStr =
+                '<div class="date-list"><div class="header clearfix"><div class="header-left fl">&lt;</div><div class="fl"><select class="year"></select></div><div class="fl"><select class="month"><option value="1">1月</option><option value="2">2月</option><option value="3">3月</option><option value="4">4月</option><option value="5">5月</option><option value="6">6月</option><option value="7">7月</option><option value="8">8月</option><option value="9">9月</option><option value="10">10月</option><option value="11">11月</option><option value="12">12月</option></select></div><div class="header-right fl">&gt;</div><div class="fr today">今日</div></div><table><thead><tr><th>一</th><th>二</th><th>三</th><th>四</th><th>五</th><th>六</th><th>日</th></tr></thead><tbody><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr></tbody></table></div>';
             $(dateStr).appendTo($(".date"));
-            var $y = $(".year"), $m = $(".month"),
+            var $y = $(".year"),
+                $m = $(".month"),
                 $year = $y.val(),
                 $month = $m.val(),
                 current = new Date(),
@@ -58,18 +102,23 @@ class Xiangqing extends Component {
                 current_date = current.getDate();
             $m.val(current_month);
             $y.val(current_year);
-            for(var i=1917;i<2118;i++){
-                var opt = '';
+            for (var i = 1917; i < 2118; i++) {
+                var opt = "";
                 opt += "<option>" + i + "</option>";
                 $(opt).appendTo($y);
-        
             }
             $y.val(current_year);
             show();
             function show() {
-                $(".date").each(function () {
-                    var $y = $(this).find(".year"), $m = $(this).find(".month");
-                    var year = $(this).find(".year").val(), month = $(this).find(".month").val();
+                $(".date").each(function() {
+                    var $y = $(this).find(".year"),
+                        $m = $(this).find(".month");
+                    var year = $(this)
+                            .find(".year")
+                            .val(),
+                        month = $(this)
+                            .find(".month")
+                            .val();
                     var dates = new Date(year, month, 0).getDate();
                     //根据年份和月份获取当月第一天的日期
                     date = new Date(new Date(year, month - 1, 1));
@@ -79,136 +128,234 @@ class Xiangqing extends Component {
                         firstDay = 7;
                     }
                     var num = 1;
-                    $(this).find("td").each(function () {
-                        $(this).removeClass("current");
-                        var $eq = $(this).index() + 1;
-                        //给td赋值
-                        if ($eq < firstDay && $(this).parent("tr").index() === 0) {
-                            $(this).html("");
-                        } else {
-                            if (num <= dates) {
-                                $(this).html(num);
-                                num++
+                    $(this)
+                        .find("td")
+                        .each(function() {
+                            $(this).removeClass("current");
+                            var $eq = $(this).index() + 1;
+                            //给td赋值
+                            if (
+                                $eq < firstDay &&
+                                $(this)
+                                    .parent("tr")
+                                    .index() === 0
+                            ) {
+                                $(this).html("");
                             } else {
-                                $(this).html("")
+                                if (num <= dates) {
+                                    $(this).html(num);
+                                    num++;
+                                } else {
+                                    $(this).html("");
+                                }
                             }
-                        }
-                        //去掉内容为空的tr
-                        if ($(this).html() == "" && $(this).siblings().html() == "") {
-                            $(this).parents("tr").css("display", "none");
-                        } else {
-                            $(this).parents("tr").css("display", "table-row")
-                        }
-                        if ($y.val() == current_year && $m.val() == current_month && $(this).html() == current_date) {
-                            $(this).addClass("current");
-                        } else {
-                            $(this).removeClass("current")
-                        }
-                    });
+                            //去掉内容为空的tr
+                            if (
+                                $(this).html() == "" &&
+                                $(this)
+                                    .siblings()
+                                    .html() == ""
+                            ) {
+                                $(this)
+                                    .parents("tr")
+                                    .css("display", "none");
+                            } else {
+                                $(this)
+                                    .parents("tr")
+                                    .css("display", "table-row");
+                            }
+                            if (
+                                $y.val() == current_year &&
+                                $m.val() == current_month &&
+                                $(this).html() == current_date
+                            ) {
+                                $(this).addClass("current");
+                            } else {
+                                $(this).removeClass("current");
+                            }
+                        });
                     num = 1;
                 });
             }
-        
+
             var date = new Date();
             //点击今日跳转到今日列表
-            $(".today").on("click", function () {
+            $(".today").on("click", function() {
                 $y.val(current_year);
                 $m.val(current_month);
                 show();
-                $(this).parents(".date-list").css("display", "none").siblings(".date-check").val(current_year + "-" + zero(current_month) + "-" + zero(current_date));
+                $(this)
+                    .parents(".date-list")
+                    .css("display", "none")
+                    .siblings(".date-check")
+                    .val(
+                        current_year +
+                            "-" +
+                            zero(current_month) +
+                            "-" +
+                            zero(current_date)
+                    );
             });
-            $(".header select").on("change", function () {
+            $(".header select").on("change", function() {
                 show();
             });
             var flag = 0;
-            $(".date-list").hover(function () {
-                flag = 0;
-            }, function () {
-                flag = 1;
-            });
+            $(".date-list").hover(
+                function() {
+                    flag = 0;
+                },
+                function() {
+                    flag = 1;
+                }
+            );
             //input框获得焦点，让日历显示。失去焦点后，让日历隐藏
-            $(".date-check").each(function () {
-                $(this).on("focus", function () {
+            $(".date-check").each(function() {
+                $(this).on("focus", function() {
                     var $outer = $(this).siblings(".date-list"),
                         $this_input = $(this);
                     $outer.css("display", "block");
-                    $outer.find("td").each(function () {
+                    $outer.find("td").each(function() {
                         var $this_td = $(this);
-                        $this_td.on("click", function () {
-                            var $input_year = $(this).parents(".date-list").find(".year").val(),
-                                $input_month = $(this).parents(".date-list").find(".month").val(),
+                        $this_td.on("click", function() {
+                            var $input_year = $(this)
+                                    .parents(".date-list")
+                                    .find(".year")
+                                    .val(),
+                                $input_month = $(this)
+                                    .parents(".date-list")
+                                    .find(".month")
+                                    .val(),
                                 $input_val = $(this).html(),
                                 date_str = "";
                             if ($this_td.html() != "") {
-                                date_str += $input_year + "-" + zero($input_month) + "-" + zero($input_val);
+                                date_str +=
+                                    $input_year +
+                                    "-" +
+                                    zero($input_month) +
+                                    "-" +
+                                    zero($input_val);
                                 $this_input.val(date_str);
                                 $outer.css("display", "none");
                             }
-                        })
-                    })
+                        });
+                    });
                 });
-                $(this).on("blur", function () {
+                $(this).on("blur", function() {
                     if (flag == 1) {
-                        $(this).siblings(".date-list").css("display", "none");
+                        $(this)
+                            .siblings(".date-list")
+                            .css("display", "none");
                         flag = 0;
                     }
-                })
+                });
             });
             //月份和日期小于10的补0
             function zero(num) {
                 return num >= 10 ? num : "0" + num;
             }
-            $("#from td,#to td,#from .today,#to .today").on("click",function(){
-                var d_year=$(this).parents(".date-list").find(".year").val(),
-                    d_month=$(this).parents(".date-list").find(".month").val(),
-                    $td_val;
-                if($(this).prop("tagName").toLowerCase()=="td"){
-                    $td_val =$(this).html();
-                    if($td_val!=""){
-                        var str=d_year+"-"+d_month+"-"+$td_val;
-                        $(this).parents(".date-list").siblings(".date-check").val(str);
+            $("#from td,#to td,#from .today,#to .today").on(
+                "click",
+                function() {
+                    var d_year = $(this)
+                            .parents(".date-list")
+                            .find(".year")
+                            .val(),
+                        d_month = $(this)
+                            .parents(".date-list")
+                            .find(".month")
+                            .val(),
+                        $td_val;
+                    if (
+                        $(this)
+                            .prop("tagName")
+                            .toLowerCase() == "td"
+                    ) {
+                        $td_val = $(this).html();
+                        if ($td_val != "") {
+                            var str = d_year + "-" + d_month + "-" + $td_val;
+                            $(this)
+                                .parents(".date-list")
+                                .siblings(".date-check")
+                                .val(str);
+                        }
                     }
                 }
-            });
-            $(".header-left").on("click",function(){
-                var $year=parseInt($(this).parents(".header").find(".year").val());
-                var $mon=parseInt($(this).parents(".header").find(".month").val());
-                if($mon>=2){
-                    $mon-=1;
-                }else{
-                    $year-=1;
-                    $mon=12;
-                    $(this).parents(".header").find(".month").val($mon);
-                    $(this).parents(".header").find(".year").val($year)
+            );
+            $(".header-left").on("click", function() {
+                var $year = parseInt(
+                    $(this)
+                        .parents(".header")
+                        .find(".year")
+                        .val()
+                );
+                var $mon = parseInt(
+                    $(this)
+                        .parents(".header")
+                        .find(".month")
+                        .val()
+                );
+                if ($mon >= 2) {
+                    $mon -= 1;
+                } else {
+                    $year -= 1;
+                    $mon = 12;
+                    $(this)
+                        .parents(".header")
+                        .find(".month")
+                        .val($mon);
+                    $(this)
+                        .parents(".header")
+                        .find(".year")
+                        .val($year);
                 }
-                $(this).parents(".header").find(".month").val($mon);
+                $(this)
+                    .parents(".header")
+                    .find(".month")
+                    .val($mon);
                 show();
             });
-            $(".header-right").on("click",function(){
-                var $year=parseInt($(this).parents(".header").find(".year").val());
-                var $mon=parseInt($(this).parents(".header").find(".month").val());
-                if($mon<12){
-                    $mon+=1;
-                }else{
-                    $year+=1;
-                    $mon=1;
-                    $(this).parents(".header").find(".month").val($mon);
-                    $(this).parents(".header").find(".year").val($year)
+            $(".header-right").on("click", function() {
+                var $year = parseInt(
+                    $(this)
+                        .parents(".header")
+                        .find(".year")
+                        .val()
+                );
+                var $mon = parseInt(
+                    $(this)
+                        .parents(".header")
+                        .find(".month")
+                        .val()
+                );
+                if ($mon < 12) {
+                    $mon += 1;
+                } else {
+                    $year += 1;
+                    $mon = 1;
+                    $(this)
+                        .parents(".header")
+                        .find(".month")
+                        .val($mon);
+                    $(this)
+                        .parents(".header")
+                        .find(".year")
+                        .val($year);
                 }
-                $(this).parents(".header").find(".month").val($mon);
+                $(this)
+                    .parents(".header")
+                    .find(".month")
+                    .val($mon);
                 show();
-        
             });
-            document.body.onselectstart=document.body.ondrag=function(){
+            document.body.onselectstart = document.body.ondrag = function() {
                 return false;
-        
-            }
-        })
-        // 
+            };
+        });
+        //
         //轮播图
         $(function() {
             clearInterval(this.timers);
-                var olw = $(".ygmtl_lbt ul")
+            var olw = $(".ygmtl_lbt ul")
                 .find("li")
                 .eq(0);
             $(".ygmtl_lbt ul").css({
@@ -219,15 +366,15 @@ class Xiangqing extends Component {
                 .find("li")
                 .width($(".ygmtl_lbt ul").width() / 4);
             var i = 0;
-            var _this=this;
-            this.timers=setInterval(function(){
+            var _this = this;
+            this.timers = setInterval(function() {
                 i++;
                 if (i >= 4) {
                     i = 1;
                     $(".ygmtl_lbt ul").css({ left: 0 });
                 }
                 $(".ygmtl_lbt ul").animate({ left: -i * olw.width() });
-            },3000)
+            }, 3000);
             $(".yxqbtn2").click(function() {
                 clearInterval(_this.timers);
                 i--;
@@ -236,14 +383,14 @@ class Xiangqing extends Component {
                     $(".ygmtl_lbt ul").css({ left: -3 * olw.width() });
                 }
                 $(".ygmtl_lbt ul").animate({ left: -i * olw.width() });
-                _this.timers=setInterval(function(){
+                _this.timers = setInterval(function() {
                     i++;
                     if (i >= 4) {
                         i = 1;
                         $(".ygmtl_lbt ul").css({ left: 0 });
                     }
                     $(".ygmtl_lbt ul").animate({ left: -i * olw.width() });
-                },3000);
+                }, 3000);
             });
             $(".yxqbtn1").click(function() {
                 clearInterval(_this.timers);
@@ -253,66 +400,67 @@ class Xiangqing extends Component {
                     $(".ygmtl_lbt ul").css({ left: 0 });
                 }
                 $(".ygmtl_lbt ul").animate({ left: -i * olw.width() });
-                _this.timers=setInterval(function(){
+                _this.timers = setInterval(function() {
                     i++;
                     if (i >= 4) {
                         i = 1;
                         $(".ygmtl_lbt ul").css({ left: 0 });
                     }
                     $(".ygmtl_lbt ul").animate({ left: -i * olw.width() });
-                },3000)
+                }, 3000);
             });
-            
         });
         //结束
     }
-    componentWillUnmount(){
+    componentWillUnmount() {
         clearTimeout(this.timers);
     }
-    slxz(){
-        $(".yslxz_c").css({"display":"block"})
+    slxz() {
+        $(".yslxz_c").css({ display: "block" });
     }
     top() {
         $("body,html").animate({ scrollTop: 0 }, 1000);
     }
-    jiet(){
-        var i= $(".yet").val();
+    jiet() {
+        var i = $(".yet").val();
         i--;
-        if(i<=0){
-            i=0
+        if (i <= 0) {
+            i = 0;
         }
-        $(".yet").val(i)
+        $(".yet").val(i);
     }
-    jaet(){
-        var i= $(".yet").val();
+    jaet() {
+        var i = $(".yet").val();
         i++;
-        $(".yet").val(i)
+        $(".yet").val(i);
     }
-    jicr(){
-        var i= $(".ycr").val();
+    jicr() {
+        var i = $(".ycr").val();
         i--;
-        if(i<=0){
-            i=0
+        if (i <= 0) {
+            i = 0;
         }
-        $(".ycr").val(i)
+        $(".ycr").val(i);
     }
-    jacr(){
-        var i= $(".ycr").val();
+    jacr() {
+        var i = $(".ycr").val();
         i++;
-        $(".ycr").val(i)
+        $(".ycr").val(i);
     }
-    yqd(){
-        var ocr=$(".ycr").val();
-        var oet=$(".yet").val();
-        if(ocr+oet<=0){
-            alert("一件起售！！！")
-        }else{
-            $("#ycroet").html(`成人：<span>${ocr}</span>儿童：<span>${oet}</span>`)
-            $(".yslxz_c").css({"display":"none"})
+    yqd() {
+        var ocr = $(".ycr").val();
+        var oet = $(".yet").val();
+        if (ocr + oet <= 0) {
+            alert("一件起售！！！");
+        } else {
+            $("#ycroet").html(
+                `成人：<span>${ocr}</span>儿童：<span>${oet}</span>`
+            );
+            $(".yslxz_c").css({ display: "none" });
         }
     }
     render() {
-       
+        //  console.log(this.oindex,this.ocityid);
         return (
             <div id="yxq">
                 <Head />
@@ -325,44 +473,38 @@ class Xiangqing extends Component {
                         <li>
                             目的地<span>&gt;</span>
                         </li>
-                        <li>{this.state.arr.address}</li>
+                        <li>{this.state.arr.areaName}</li>
                     </ul>
                     <div className="ygmt">
                         <div className="ygmtl yleft">
                             <div className="yxqbt">
                                 <h1>
                                     {/* 皮皮岛+鸡蛋岛快艇1日游（含中文导游、全岛接送、浮潜用具） */}
-                                    {this.state.arr.city}
+                                    {this.state.arr.name}
                                 </h1>
-                                <h2>
-                                {this.state.arr.title}
-                                </h2>
+                                <h2>{this.state.arr.address}</h2>
                             </div>
                             <div className="ygmtl_box">
                                 <div className="ygmtl_lbt">
-                                <div className="ybtn ybtn3 yxqbtn1">&lt;</div>
-                                <div className="ybtn ybtn3 yxqbtn2">&gt;</div>
+                                    <div className="ybtn ybtn3 yxqbtn1">
+                                        &lt;
+                                    </div>
+                                    <div className="ybtn ybtn3 yxqbtn2">
+                                        &gt;
+                                    </div>
                                     <ul>
                                     <li>
-                                            <img
-                                                src={this.state.arr.img1}
-                                            />
-                                        </li>
-                                        <li>
-                                            <img
-                                                src={this.state.arr.img2}
-                                            />
-                                        </li>
-                                        <li>
-                                            <img
-                                                src={this.state.arr.img3}
-                                            />
-                                        </li>
-                                        <li>
-                                            <img
-                                                src={this.state.arr.img1}
-                                            />
-                                        </li>
+                                        <img src={this.state.tu.img1}/>
+                                    </li>
+                                    <li>
+                                        <img src={this.state.tu.img2}/>
+                                    </li>
+                                    <li>
+                                        <img src={this.state.tu.img3}/>
+                                    </li>
+                                    <li>
+                                        <img src={this.state.tu.img1}/>
+                                    </li>
                                     </ul>
                                 </div>
                             </div>
@@ -371,57 +513,101 @@ class Xiangqing extends Component {
                             <div className="ygmtr_bt">
                                 <p>
                                     <b>成人</b>
-                                    <span>￥{this.state.arr.price}</span>
+                                    <span>￥{this.state.arr.cityId}</span>
                                     <b>儿童</b>
-                                    <span>￥{this.state.arr.price1}</span>
+                                    <span>￥{this.state.arr.cityId}</span>
                                 </p>
                                 <p>
                                     <i>当地价：</i>
-                                    <span>成人￥{this.state.arr.price2}</span>
-                                    <span>儿童￥{this.state.arr.price3}</span>
+                                    <span>成人￥{this.state.arr.cityId}</span>
+                                    <span>儿童￥{this.state.arr.cityId}</span>
                                 </p>
                             </div>
                             <div className="ygmtr_rq yoption">
                                 <p>出游日期：</p>
-                                <div id="ycyrq"  className="yddiv">
+                                <div id="ycyrq" className="yddiv">
                                     <div className="date date1 fl" id="from">
-                                        <input type="text" className="date-check" />
+                                        <input
+                                            type="text"
+                                            className="date-check"
+                                        />
                                     </div>
                                 </div>
                             </div>
                             <div className="ygmtr_sl yoption">
                                 <p>数量选择：</p>
                                 <div id="yslxz" className="yddiv">
-                                    <p onClick={this.slxz.bind(this)} id="ycroet"></p>
+                                    <p
+                                        onClick={this.slxz.bind(this)}
+                                        id="ycroet"
+                                    />
                                     <div className="yslxz_c">
                                         <div className="yslxz_warp">
                                             <div className="yslxz_1">
-                                                <label className="yleft">成人</label>
+                                                <label className="yleft">
+                                                    成人
+                                                </label>
                                                 <div className="yjjk">
-                                                    <button onClick={this.jicr.bind(this)}>-</button>
-                                                    <input type="Number" className="ycr" defaultValue={1}/>
-                                                    <button onClick={this.jacr.bind(this)}>+</button>
+                                                    <button
+                                                        onClick={this.jicr.bind(
+                                                            this
+                                                        )}
+                                                    >
+                                                        -
+                                                    </button>
+                                                    <input
+                                                        type="Number"
+                                                        className="ycr"
+                                                        defaultValue={1}
+                                                    />
+                                                    <button
+                                                        onClick={this.jacr.bind(
+                                                            this
+                                                        )}
+                                                    >
+                                                        +
+                                                    </button>
                                                 </div>
                                             </div>
                                             <div className="yslxz_1">
-                                                <label className="yleft">儿童</label>
+                                                <label className="yleft">
+                                                    儿童
+                                                </label>
                                                 <div className="yjjk">
-                                                    <button onClick={this.jiet.bind(this)}>-</button>
-                                                    <input type="Number" className="yet" defaultValue={0}/>
-                                                    <button onClick={this.jaet.bind(this)}>+</button>
+                                                    <button
+                                                        onClick={this.jiet.bind(
+                                                            this
+                                                        )}
+                                                    >
+                                                        -
+                                                    </button>
+                                                    <input
+                                                        type="Number"
+                                                        className="yet"
+                                                        defaultValue={0}
+                                                    />
+                                                    <button
+                                                        onClick={this.jaet.bind(
+                                                            this
+                                                        )}
+                                                    >
+                                                        +
+                                                    </button>
                                                 </div>
                                             </div>
-                                             
                                         </div>
-                                        <button className="yxzsl_qd" onClick={this.yqd.bind(this)}>
+                                        <button
+                                            className="yxzsl_qd"
+                                            onClick={this.yqd.bind(this)}
+                                        >
                                             确定
-                                            </button>
-                                            <span className="yyjqs">一件起售</span>   
+                                        </button>
+                                        <span className="yyjqs">一件起售</span>
                                     </div>
                                 </div>
                             </div>
                             <div className="ygmtr_btn">
-                                <button id="ygmtr_jrgwc">加入购物车</button>
+                                <button id="ygmtr_jrgwc" data-in={this.state.oindex} data-id={this.state.ocityid}>加入购物车</button>
                                 <button id="ygmtr_jrsc">加入收藏</button>
                             </div>
                             <div className="ygmtr_end">下载APP购买更便宜</div>
@@ -429,24 +615,24 @@ class Xiangqing extends Component {
                     </div>
                 </div>
                 <div id="yxqnav">
-                <div id="yxqnav_2">
-                    <ul>
-                        <li className="ynav_active">
-                            <a onClick={this.dianji.bind(this,"#ycpjs")} >
-                            <p>产品介绍</p>
-                            </a>
-                        </li>
-                        <li>
-                        <a onClick={this.dianji.bind(this,"#ydt")} >
-                            <p>地图</p>
-                            </a>
-                        </li>
-                        <li>
-                        <a onClick={this.dianji.bind(this,"#yydxz")} >
-                            <p>预订须知</p>
-                            </a>
-                        </li>
-                    </ul>
+                    <div id="yxqnav_2">
+                        <ul>
+                            <li className="ynav_active">
+                                <a onClick={this.dianji.bind(this, "#ycpjs")}>
+                                    <p>产品介绍</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a onClick={this.dianji.bind(this, "#ydt")}>
+                                    <p>地图</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a onClick={this.dianji.bind(this, "#yydxz")}>
+                                    <p>预订须知</p>
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
                 <div className="yxq_warp">
@@ -458,9 +644,7 @@ class Xiangqing extends Component {
                             <div className="ycpjs_lbt">
                                 <ul>
                                     <li>
-                                        <img
-                                            src={require("../image/cpjslbt.jpg")}
-                                        />
+                                        <img src={this.state.tu.img1}/>
                                     </li>
                                 </ul>
                             </div>
@@ -484,20 +668,25 @@ class Xiangqing extends Component {
                     <div id="ydt">
                         <div className="ydt_bt">
                             <h2 className="yxqyybt">地图</h2>
-                            <p>
-                                地址： Phi Phi Island, Tambol Ao-Nang Muang,
-                                Thailand
-                            </p>
-                            <p>
-                                到达皮皮岛唯一的途径就是乘船，需要先到普吉岛或甲米，再搭轮渡前往。
-                            </p>
+                            <p>地址： {this.state.arr.address}</p>
+                            <p>{this.state.arr.attention}</p>
                         </div>
                         <div id="ydt_dt">
-                        <Map center={{lng:121.487899486, lat:31.24916171}} zoom="12" style={{"height":"400px"}}>
-                            <Marker position={{lng:121.487899486, lat:31.249161716}} />
-                            <NavigationControl />
-                            <InfoWindow position={{lng:121.487899486, lat:31.24916171}} text="上海市" title="东方明珠"/>
-                        </Map>
+                            {/* this.state.arr.location.lon */}
+                            {/* this.state.arr.location.lat */}
+                            <Map
+                                center={{ lng:this.state.lng, lat:this.state.lat}}
+                                zoom="12"
+                                style={{ height: "400px" }}
+                            >
+                                <Marker position={{lng:this.state.lng, lat:this.state.lat}} />
+                                <NavigationControl />
+                                <InfoWindow
+                                    position={{lng:this.state.lng, lat:this.state.lat}}
+                                    text={this.state.areaName}
+                                    title={this.state.name}
+                                />
+                            </Map>
                         </div>
                     </div>
                 </div>
