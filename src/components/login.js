@@ -20,21 +20,19 @@ class Login extends Component {
             data: {
                 username:_this.refs.user.value
             },
+            dataType:"json",
             success: function (data) {
-                var arr=[];
-                arr=JSON.parse(data)[0];
+                var arr=data[0];
                 if(arr.username==_this.refs.user.value&&arr.password==_this.refs.pass.value){
                     Store.dispatch(Action({user:_this.refs.user.value}))
-
+                    // console.log(arr,JSON.parse(arr.shop_id));
                     _this.props.history.push('/home')
-                }else{console.log(JSON.parse(arr))
+                }else{
                     alert("账号或密码错误")
                 }
                 
             }
         });
-
-
     }
 
     render() {

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Store from "../redux/Store";
 import Head from "./head";
 import Footer2 from "./footer2";
 import "../css/xq.css";
@@ -10,6 +11,7 @@ class Xiangqing extends Component {
             (this.state = {
                 arr: [],
                 tu: [],
+                shopnum:0,
                 oindex:0,
                 ocityid:0,
                 lng:0, 
@@ -18,7 +20,13 @@ class Xiangqing extends Component {
                 areaName:''
 
             });
+            this.onchang=this.onchang.bind(this);
     }
+
+    onchang(){
+        this.setState({name:Store.getState()})
+    }
+       
     dianji(abc) {
         $(function() {
             //锚点跳转滑动效果
@@ -27,11 +35,12 @@ class Xiangqing extends Component {
     }
 
     componentDidMount() {
+        Store.subscribe(this.onchang);
         var _this = this;
-        var oid = this.props.location.query.name;
-        var oindex = this.props.location.query.index;
+        // var oid = this.props.location.query.name;
+        var oindex = this.props.match.params.id;
         this.setState({oindex:oindex});
-        this.setState({ocityid:oid});
+        // this.setState({ocityid:oid});
         $.ajax({
             type: "get",
             url: "http://www.baidu.com/api",
@@ -50,7 +59,7 @@ class Xiangqing extends Component {
                 keyword: "泰山",
                 proId: "",
                 cityId: "",
-                areaId: oid,
+                areaId: "",
                 page: ""
             },
 
@@ -58,7 +67,7 @@ class Xiangqing extends Component {
                 alert("操作失败!");
             },
             success: function(result) {
-                //console.log(result.showapi_res_body.pagebean.contentlist) //console变量在ie低版本下不能用
+                console.log(result.showapi_res_body.pagebean.contentlist) //console变量在ie低版本下不能用
                 _this.setState({
                     arr: result.showapi_res_body.pagebean.contentlist[oindex]
                     
@@ -459,6 +468,68 @@ class Xiangqing extends Component {
             $(".yslxz_c").css({ display: "none" });
         }
     }
+    addcart(){
+        var _this=this;
+        let oIndex=this.state.oindex;
+        let sum=Number(this.refs.adult.value)+Number(this.refs.child.value);
+        if(this.state.name.user){
+            
+            $.ajax({
+                type: "get",
+                url: "http://linge669.com/data/userinfo.php",
+                data: {
+                    username:this.state.name.user
+                },
+                dataType: "json",
+                success: function (data) {
+                    var arr=data[0];
+                    var obj={
+                        oIndex:oIndex,
+                        sum:sum
+        
+                    };
+                    if(arr.shop_id==""){
+                        arr.shop_id=[];
+
+                    }
+                    var shop=JSON.parse(arr.shop_id);
+                    shop.push(obj);
+                    console.log(shop);
+                    let l_count=0;
+                    shop.map(function(item){
+                        l_count+=Number(item.sum);
+
+                    })
+                    _this.setState({shopnum:l_count});
+                    $.ajax({
+                        type: "get",
+                        url: "http://linge669.com/data/userinfo.php",
+                        data: {
+                            status:"addshop",
+                            username:_this.state.name.user,
+                            shop_id:JSON.stringify(shop)
+                        },
+                        success: function (data) {
+                            if(data==1){
+                                alert("添加成功")
+                            }
+                        }
+                    }); 
+                                      
+                }
+            });
+            
+            
+
+            
+
+        }else{
+            alert("请先登录")
+        }
+        
+
+
+    }
     render() {
         //  console.log(this.oindex,this.ocityid);
         return (
@@ -559,6 +630,7 @@ class Xiangqing extends Component {
                                                         type="Number"
                                                         className="ycr"
                                                         defaultValue={1}
+                                                        ref="adult"
                                                     />
                                                     <button
                                                         onClick={this.jacr.bind(
@@ -585,6 +657,7 @@ class Xiangqing extends Component {
                                                         type="Number"
                                                         className="yet"
                                                         defaultValue={0}
+                                                        ref="child"
                                                     />
                                                     <button
                                                         onClick={this.jaet.bind(
@@ -607,7 +680,7 @@ class Xiangqing extends Component {
                                 </div>
                             </div>
                             <div className="ygmtr_btn">
-                                <button id="ygmtr_jrgwc" data-in={this.state.oindex} data-id={this.state.ocityid}>加入购物车</button>
+                                <button id="ygmtr_jrgwc" data-in={this.state.oindex} data-id={this.state.ocityid} onClick={this.addcart.bind(this)}>加入购物车</button>
                                 <button id="ygmtr_jrsc">加入收藏</button>
                             </div>
                             <div className="ygmtr_end">下载APP购买更便宜</div>
@@ -825,7 +898,7 @@ class Xiangqing extends Component {
                         <div className="ygwc">
                             <i />
                             <p>购物车</p>
-                            <span id="ygwcsl">0</span>
+                            <span id="ygwcsl">{this.state.shopnum}</span>
                         </div>
                         <div className="ygwot">
                             <a href="#">
