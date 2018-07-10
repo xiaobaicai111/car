@@ -32,8 +32,13 @@ class Place extends Component {
             url: 'http://route.showapi.com/268-1',
             dataType: 'json',
             data: {
+<<<<<<< HEAD
                 "showapi_appid": '69207', //这里需要改成自己的appid
                 "showapi_sign": 'e26879ad01c04542837b013535d41e9a',  //这里需要改成自己的应用的密钥secret
+=======
+                "showapi_appid": '69266', //这里需要改成自己的appid
+                "showapi_sign": '05e6f56673d74f6696d479e13ee7a657',  //这里需要改成自己的应用的密钥secret
+>>>>>>> 4154781e8638c307ed1286288e6445ca83164f9b
                 "keyword":"泰山",
                 "proId":"",
                 "cityId":"",
@@ -138,12 +143,12 @@ class Place extends Component {
                                 return(
                                     <li key={i}>
                                         <div>
-                                        <Link to={{pathname:"/xiangqing",query:{name:item.areaId,index:i}}}>
+                                        <Link to={"/xiangqing/"+i}>
                                                 <img src={item.picList[0].picUrlSmall} />
                                         </Link>
                                         </div>
                                         <div className="ycpbbb">
-                                        <Link to={{pathname:"/xiangqing",query:{name:item.areaId,index:i}}}>
+                                        <Link to={"/xiangqing/"+i}>
                                                 {item.name}
                                                 </Link>
                                             <p className="yqbl yleft">

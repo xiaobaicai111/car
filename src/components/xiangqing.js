@@ -14,7 +14,11 @@ class Xiangqing extends Component {
                 shopnum:0,
                 oindex:0,
                 ocityid:0,
-                name:Store.getState()
+                lng:0, 
+                lat:0,
+                name:"",
+                areaName:''
+
             });
             this.onchang=this.onchang.bind(this);
     }
@@ -33,29 +37,10 @@ class Xiangqing extends Component {
     componentDidMount() {
         Store.subscribe(this.onchang);
         var _this = this;
-        var oid = this.props.location.query.name;
-        var oindex = this.props.location.query.index;
+        // var oid = this.props.location.query.name;
+        var oindex = this.props.match.params.id;
         this.setState({oindex:oindex});
-        this.setState({ocityid:oid});
-        if(this.state.name.user){
-            $.ajax({
-                type: "get",
-                url: "http://linge669.com/data/userinfo.php",
-                data: {
-                    username:this.state.name.user
-                },
-                dataType: "json",
-                success: function (data) {
-                    var arr=data[0];
-                    var shop=JSON.parse(arr.shop_id);
-                    let l_count=0;
-                    shop.map(function(item){
-                        l_count+=Number(item.sum);
-                        })
-                _this.setState({shopnum:l_count});
-            }
-        });
-    }
+        // this.setState({ocityid:oid});
         $.ajax({
             type: "get",
             url: "http://www.baidu.com/api",
@@ -69,12 +54,12 @@ class Xiangqing extends Component {
             url: "http://route.showapi.com/268-1",
             dataType: "json",
             data: {
-                showapi_appid: "69207", //这里需要改成自己的appid
-                showapi_sign: "e26879ad01c04542837b013535d41e9a", //这里需要改成自己的应用的密钥secret
+                showapi_appid: "69266", //这里需要改成自己的appid
+                showapi_sign: "05e6f56673d74f6696d479e13ee7a657", //这里需要改成自己的应用的密钥secret
                 keyword: "泰山",
                 proId: "",
                 cityId: "",
-                areaId: oid,
+                areaId: "",
                 page: ""
             },
 
@@ -85,7 +70,13 @@ class Xiangqing extends Component {
                 console.log(result.showapi_res_body.pagebean.contentlist) //console变量在ie低版本下不能用
                 _this.setState({
                     arr: result.showapi_res_body.pagebean.contentlist[oindex]
+                    
                 });
+                console.log(result.showapi_res_body.pagebean.contentlist,result.showapi_res_body.pagebean.contentlist[oindex])
+                _this.setState({lng:result.showapi_res_body.pagebean.contentlist[oindex].location.lon});
+                _this.setState({lat:result.showapi_res_body.pagebean.contentlist[oindex].location.lat});
+                _this.setState({name:result.showapi_res_body.pagebean.contentlist[oindex].name});
+                _this.setState({areaName:result.showapi_res_body.pagebean.contentlist[oindex].areaName});
             }
         });
         // console.log(this.props.location.query)
@@ -540,7 +531,7 @@ class Xiangqing extends Component {
 
     }
     render() {
-        // console.log(this.oindex,this.ocityid);
+        //  console.log(this.oindex,this.ocityid);
         return (
             <div id="yxq">
                 <Head />
@@ -757,16 +748,16 @@ class Xiangqing extends Component {
                             {/* this.state.arr.location.lon */}
                             {/* this.state.arr.location.lat */}
                             <Map
-                                center={{ lng: 123, lat: 123 }}
+                                center={{ lng:this.state.lng, lat:this.state.lat}}
                                 zoom="12"
                                 style={{ height: "400px" }}
                             >
-                                <Marker position={{ lng: 123, lat: 123 }} />
+                                <Marker position={{lng:this.state.lng, lat:this.state.lat}} />
                                 <NavigationControl />
                                 <InfoWindow
-                                    position={{ lng: 123, lat: 123 }}
-                                    text="上海市"
-                                    title="东方明珠"
+                                    position={{lng:this.state.lng, lat:this.state.lat}}
+                                    text={this.state.areaName}
+                                    title={this.state.name}
                                 />
                             </Map>
                         </div>
