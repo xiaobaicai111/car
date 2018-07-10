@@ -32,8 +32,8 @@ class Place extends Component {
             url: 'http://route.showapi.com/268-1',
             dataType: 'json',
             data: {
-                "showapi_appid": '69224', //这里需要改成自己的appid
-                "showapi_sign": 'bc60c653279549ce877e44281d9839e3',  //这里需要改成自己的应用的密钥secret
+                "showapi_appid": '69207', //这里需要改成自己的appid
+                "showapi_sign": 'e26879ad01c04542837b013535d41e9a',  //这里需要改成自己的应用的密钥secret
                 "keyword":"泰山",
                 "proId":"",
                 "cityId":"",
