@@ -15,8 +15,12 @@ class Place extends Component {
     }
     componentDidMount() {
         var _this = this;
-        // var ysearch = this.props.location.query.ysearch;
-        // console.log(ysearch);
+        if(this.props.location.query){
+            var ysearch = this.props.location.query.ysearch;
+        }else{
+            var ysearch="泰山"
+        }
+        console.log(ysearch);
         $.ajax({
             type: "get",
             url: "http://www.baidu.com/api",
@@ -34,7 +38,7 @@ class Place extends Component {
             data: {
                 "showapi_appid": '69317', //这里需要改成自己的appid
                 "showapi_sign": '556d90d5c7a54d139b99579970a50b2e',  //这里需要改成自己的应用的密钥secret
-                "keyword":"泰山",
+                "keyword":ysearch,
                 "proId":"",
                 "cityId":"",
                 "areaId":"",
@@ -47,13 +51,16 @@ class Place extends Component {
             },
             success: function(result) {
                 console.log(result) //console变量在ie低版本下不能用
-                // _this.setState({arr:result.showapi_res_body.pagebean.contentlist});
+                _this.setState({arr:result.showapi_res_body.pagebean.contentlist});
             }
         });
-    
-        // console.log(_this.props.location.query)
 
     }
+
+    componentWillUnmount(){
+        
+    }
+
     fenye(){
         if(this.state.arr.length>12){
         }else{
