@@ -11,7 +11,7 @@ import Register from './components/register';
 import Hotel from './components/hotel';
 import Place from './components/place';
 import Xiangqing from './components/xiangqing';
-import Store from './redux/Store';
+
 class App extends Component {
   constructor(props){
     super(props);

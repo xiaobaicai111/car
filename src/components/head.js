@@ -30,11 +30,15 @@ class Head extends Component {
             $(".l_userinfo").css("display","inline-block");
             $(".l_user").css("display","none");
         }
-
+        
     }
 
-    render() {
-        
+    l_ser(){
+        var l_se = $("#l_sech").val()
+        this.props.history.push({pathname:'/place',query:{l_se:l_se}})
+    }
+
+    render() {   
 
         return (
             <div>
@@ -44,14 +48,13 @@ class Head extends Component {
                         <ul>
                             <Link to="/home" className="l_links" onClick={this.changeactive}>首页</Link>
                             <Link to="/place" id="l_mudi" className="l_links" onClick={this.changeactive}>目的地</Link>
-                            <Link to="/hotel" className="l_links" onClick={this.changeactive}>酒店</Link>
                             <Link to="/cart" className="l_links" onClick={this.changeactive}>购物车</Link>
                             <Link to="/applation" className="l_links" onClick={this.changeactive}>App下载</Link>
                         </ul>
                     </nav>
-                    <span className="l_span">
+                    <span className="l_span" style={{visibility:'hidden'}}>
                         <input className="l_search" type="text" ref="l_sech" id="l_sech"/>
-                        <button className="l_ser_icon"></button>
+                        <button className="l_ser_icon" onClick={this.l_ser.bind(this)}></button>
                     </span>
 
                     <div className="l_userinfo">

@@ -15,6 +15,8 @@ class Place extends Component {
     }
     componentDidMount() {
         var _this = this;
+        // var ysearch = this.props.location.query.ysearch;
+        // console.log(ysearch);
         $.ajax({
             type: "get",
             url: "http://www.baidu.com/api",
@@ -24,16 +26,14 @@ class Place extends Component {
                  _this.setState({haoquchu:data.haoquchu});
             }
         });
-        // 总页数
-        _this.setState({totalpage:Math.ceil(_this.state.arr.length/this.state.pagesize)})
         
         $.ajax({
             type: 'post',
-            url: 'http://route.showapi.com/268-1',
+            url: 'https://route.showapi.com/268-1',
             dataType: 'json',
             data: {
-                "showapi_appid": '69266', //这里需要改成自己的appid
-                "showapi_sign": '05e6f56673d74f6696d479e13ee7a657',  //这里需要改成自己的应用的密钥secret
+                "showapi_appid": '69317', //这里需要改成自己的appid
+                "showapi_sign": '556d90d5c7a54d139b99579970a50b2e',  //这里需要改成自己的应用的密钥secret
                 "keyword":"泰山",
                 "proId":"",
                 "cityId":"",
@@ -46,12 +46,12 @@ class Place extends Component {
                 alert("操作失败!");
             },
             success: function(result) {
-                //console.log(result.showapi_res_body.pagebean.contentlist) //console变量在ie低版本下不能用
-                _this.setState({arr:result.showapi_res_body.pagebean.contentlist});
+                console.log(result) //console变量在ie低版本下不能用
+                // _this.setState({arr:result.showapi_res_body.pagebean.contentlist});
             }
         });
     
-        console.log(_this.props.location.query)
+        // console.log(_this.props.location.query)
 
     }
     fenye(){

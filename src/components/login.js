@@ -25,7 +25,7 @@ class Login extends Component {
                 arr=JSON.parse(data)[0];
                 if(arr.username==_this.refs.user.value&&arr.password==_this.refs.pass.value){
                     Store.dispatch(Action({user:_this.refs.user.value}))
-                    
+
                     _this.props.history.push('/home')
                 }else{console.log(JSON.parse(arr))
                     alert("账号或密码错误")
