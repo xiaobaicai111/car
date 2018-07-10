@@ -13,7 +13,7 @@ class Xiangqing extends Component {
                 tu: [],
                 shopnum:0,
                 oindex:0,
-                ocityid:0,
+                ocityid:"泰山",
                 lng:0, 
                 lat:0,
                 name:"",
@@ -38,8 +38,18 @@ class Xiangqing extends Component {
         Store.subscribe(this.onchang);
         var _this = this;
         // var oid = this.props.location.query.name;
-        var oindex = this.props.match.params.id;
+        if(this.props.location.query){
+            var oindex = this.props.location.query.index;
+            var ysearch = this.props.location.query.ysearch;
+        }else{
+            var oindex = 0;
+            var ysearch ="泰山";
+        }
+        console.log(this.props.router)
+        // var oindex = this.props.location.query.index;
+        // var ysearch = this.props.location.query.ysearch;
         this.setState({oindex:oindex});
+        this.setState({ocityid:ysearch});
         // this.setState({ocityid:oid});
         $.ajax({
             type: "get",
@@ -56,7 +66,7 @@ class Xiangqing extends Component {
             data: {
                 showapi_appid: "69317", //这里需要改成自己的appid
                 showapi_sign: "556d90d5c7a54d139b99579970a50b2e", //这里需要改成自己的应用的密钥secret
-                keyword: "泰山",
+                keyword: ysearch,
                 proId: "",
                 cityId: "",
                 areaId: "",

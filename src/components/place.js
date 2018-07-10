@@ -11,14 +11,17 @@ class Place extends Component {
         this.state={
             arr:[],
             haoquchu:[],   
+            ysearch:""
         }
     }
     componentDidMount() {
         var _this = this;
         if(this.props.location.query){
             var ysearch = this.props.location.query.ysearch;
+            _this.setState({ysearch:ysearch})
         }else{
             var ysearch="泰山"
+            _this.setState({ysearch:ysearch})
         }
         console.log(ysearch);
         $.ajax({
@@ -74,6 +77,7 @@ class Place extends Component {
 
     render() {
         // console.log(this.state.arr,this.state.haoquchu)
+        var _this=this
         return (
             <div id="yb">
                 <Head />
@@ -140,12 +144,13 @@ class Place extends Component {
                     </div>
                     <div className="ycpli">
                         <ul>
-                        {this.state.arr.map(function(item,i){
+                        {
+                            this.state.arr.map(function(item,i){
                             if(i<=11){
                                 return(
                                     <li key={i}>
                                         <div>
-                                        <Link to={"/xiangqing/"+i}>
+                                        <Link to={{pathname:"/xiangqing/",query:{index:i,ysearch:_this.state.ysearch}}}>
                                                 <img src={item.picList[0].picUrlSmall} />
                                         </Link>
                                         </div>
